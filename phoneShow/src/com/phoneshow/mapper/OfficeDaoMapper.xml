@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phoneshow.dao.OfficeDao">
+	<insert id="insertOffice" parameterType="java.util.Map">
+		INSERT INTO office
+		(`id`,`title`,`type`,`url`,`content`,`date`)
+		 VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
+	</insert>
+	
+	<sql id="queryOfficeWhere">
+		<where>
+			<if test="title != '' and title !=null">
+				o.title like #{title}
+			</if>
+			<if test="type != '' and type !=null">
+				and o.type = #{type}
+			</if>
+			<if test="start !='' and end !='' and start !=null and end !=null">
+				and str_to_date(o.date,'%Y-%m-%d %H:%i')
+ 				BETWEEN str_to_date(#{start},'%Y-%m-%d %H:%i') 
+				AND str_to_date(#{end},'%Y-%m-%d %H:%i') 
+			</if>
+		</where>
+	</sql>
+	<select id="selectOffice" parameterType="java.util.Map" resultType="java.util.Map">
+		select * from office o
+		<include refid="queryOfficeWhere"/>
+		order by str_to_date(o.date,'%Y-%m-%d %H:%i') DESC
+		<if test="pageno != null and pagesize !=null" >    		
+			LIMIT #{pageno}, #{pagesize}
+    	</if>
+    	
+	</select>
+	
+	<select id="getOfficeById" parameterType="java.lang.String" resultType="java.util.Map">
+		select * from office o where o.id=#{id}
+	</select>
+	
+	<select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(*) from office o
+		<include refid="queryOfficeWhere"/>
+		order by str_to_date(o.date,'%Y-%m-%d-%H-%i-%s') DESC
+		<if test="pageno != null and pagesize !=null" >    		
+			LIMIT #{pageno}, #{pagesize}
+    	</if>
+	</select>
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM office WHERE id=#{id}
+	</delete>
+</mapper>
