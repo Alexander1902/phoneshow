@@ -11,6 +11,7 @@ $(function(){
 		relaod();
 	});
 })
+//刷新整个页面
 function relaod(){
 	$("#type").val("");
 	$("#title").val("");
@@ -20,7 +21,7 @@ function relaod(){
 	pageSize=10;
 	initData();
 }
-//
+//翻页
 function changPage(pageno,allpage,size,jsondata){
 	//分页
 	$("#page").paging({
@@ -37,6 +38,7 @@ function changPage(pageno,allpage,size,jsondata){
 		}
 	})
 }
+//初始页面
 function initData(json){//页码，每页的size
 	if(json!=null){
 		console.log(json);
@@ -60,6 +62,7 @@ function initData(json){//页码，每页的size
 		
 		$.ajax(_param);
 }
+//查询
 function search(num){
 	var type=$("#type").val();
 	var title=$("#title").val();
@@ -113,48 +116,11 @@ function showHtml(data){
 		html+="</td>";
 		html+="<td>"+data[o].date;
 		html+="</td>";
-		html+="<td><button onclick=\"deleteIt('"+data[o].id+"','"+data[o].title+"')\">删除</button>";
-		html+="</td>";
 		html+="</tr>";
 		$("#officeTable").append(html);
 	}
 }
-/*
- * 传入后台总页数，id
- */
-function deleteIt(id,title){
-	var r=confirm("确定要删除“"+title+"”吗？");
-	if(r){
-		var type=$("#type").val();
-		var title=$("#title").val();
-		var start=$("#start").val();
-		var end=$("#end").val();
-		var jsondata={"id":id,"totalpage":totalPage,"pageno":curpage,"pagesize":pageSize,
-				"type":type,"title":title,"start":start,"end":end};
-		var _param={
-				url: "/phoneShow/page/delete.do",
-				type: "GET",
-				datatype: 'json',
-				data:jsondata,
-				success: function(data){
-					if(data.stute==1){
-						totalPage=data.pagecount;//总页数
-						totalSize=data.datacount;//数据总量
-						curpage=data.pageno;
-						var cond={"pageno":curpage,"pagesize":pageSize,"type":type,"title":title,"start":start,"end":end};
-						initData(cond);
-					}else{
-						alert("删除失败！");
-					}
-					
-				}
-			};
-			$.ajax(_param);
-	}else{
-		return;
-	}
-	
-}
+//根据翻页刷新页面
 function fulshHtml(jsondata){
 	var _param={
 			url: "/phoneShow/page/getoffice.do",

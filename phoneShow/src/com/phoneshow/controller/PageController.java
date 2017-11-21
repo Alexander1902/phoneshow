@@ -37,25 +37,31 @@ import com.phoneshow.util.WordToHtml;
 @Controller
 @RequestMapping("/page")
 public class PageController {
-	
-	Logger logger=Logger.getLogger(PageController.class);
-	
+
+	Logger logger = Logger.getLogger(PageController.class);
+
 	@Autowired
 	private OfficeConverterService officeConverterService;
-	
-	@RequestMapping(value="/{page}.do")
-	public String page(@PathVariable String page){
-		logger.info("跳到"+page+".jsp");
+
+	/**
+	 * 跳页
+	 * 
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value = "/{page}.do")
+	public String page(@PathVariable String page) {
+		logger.info("跳到" + page + ".jsp");
 		return page;
 	}
 
 	/**
-	 * Administrator
-	 * TODO 获得参数{"type":type,"title":title,"start":start,"end":end}
+	 * 文档管理，分页，查询 Administrator TODO
+	 * 获得参数{"type":type,"title":title,"start":start,"end":end}
 	 */
-	@RequestMapping(value="/getoffice.do")
+	@RequestMapping(value = "/getoffice.do")
 	@ResponseBody
-	public Map<String, Object> selectOffice(HttpServletRequest request){
+	public Map<String, Object> selectOffice(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -67,45 +73,57 @@ public class PageController {
 		String type = WebUtill.getParameter("type", request);
 		String title = WebUtill.getParameter("title", request);
 		try {
-			System.out.println("title------------"+new String(title.getBytes("gbk"),"UTF-8"));
-			System.out.println("title------------"+request.getParameter("title"));
+			System.out.println("title------------" + new String(title.getBytes("gbk"), "UTF-8"));
+			System.out.println("title------------" + request.getParameter("title"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 		String start = WebUtill.getParameter("start", request);
 		String end = WebUtill.getParameter("end", request);
-		/*int pageno = Integer.parseInt((String)cond.get("pageno"),10);
-		pagesize = Integer.parseInt((String)cond.get("pagesize"),10);*/
-		logger.info("pageno:"+pageno+",pagesize:"+pagesize+",type:"+type+",title:"+title+",start:"+start+",end:"+end);
-		
-		Map<String, Object> datamap=new HashMap<String, Object>();//页码参数+条件参数
+		/*
+		 * int pageno = Integer.parseInt((String)cond.get("pageno"),10);
+		 * pagesize = Integer.parseInt((String)cond.get("pagesize"),10);
+		 */
+		logger.info("pageno:" + pageno + ",pagesize:" + pagesize + ",type:" + type + ",title:" + title + ",start:"
+				+ start + ",end:" + end);
+
+		Map<String, Object> datamap = new HashMap<String, Object>();// 页码参数+条件参数
 		datamap.put("pageno", PageUtill.getPageData(pageno, pagesize));
 		datamap.put("pagesize", pagesize);
 		datamap.put("type", type);
-		datamap.put("title", "%"+title+"%");
-		datamap.put("start",start!=null&&start!=""?MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)):"");
-		datamap.put("end", end!=null&&end!=""?MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)):"");
-	    List<Map<String, String>> office = officeConverterService.getOffice(datamap);
-	   
-	    Map<String, Object> countmap = new HashMap<String, Object>();
-	    countmap.put("type", type);
-	    countmap.put("title", "%"+title+"%");
-	    countmap.put("start", start!=null&&start!=""?MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)):"");
-	    countmap.put("end", end!=null&&end!=""?MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)):"");
-	    Integer datacount = officeConverterService.getCount(countmap);
-	    logger.info("datacount:"+datacount+",取到数据量："+office.size());
-	    
-	    Integer pageCount = PageUtill.getPageCount(datacount, pagesize);
-	    Map<String, Object> hash= new HashMap<>();
-	    hash.put("pagecount", pageCount);
-	    hash.put("office", office);
-	    hash.put("datacount", datacount);
-	    hash.put("pageno", pageno);
+		datamap.put("title", "%" + title + "%");
+		datamap.put("start",
+				start != null && start != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)) : "");
+		datamap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)) : "");
+		List<Map<String, String>> office = officeConverterService.getOffice(datamap);
+
+		Map<String, Object> countmap = new HashMap<String, Object>();
+		countmap.put("type", type);
+		countmap.put("title", "%" + title + "%");
+		countmap.put("start",
+				start != null && start != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)) : "");
+		countmap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)) : "");
+		Integer datacount = officeConverterService.getCount(countmap);
+		logger.info("datacount:" + datacount + ",取到数据量：" + office.size());
+
+		Integer pageCount = PageUtill.getPageCount(datacount, pagesize);
+		Map<String, Object> hash = new HashMap<>();
+		hash.put("pagecount", pageCount);
+		hash.put("office", office);
+		hash.put("datacount", datacount);
+		hash.put("pageno", pageno);
 		return hash;
 	}
+
+	/**
+	 * 删除数据
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/delete.do")
 	@ResponseBody
-	public Map<String, Object> deleteOne(HttpServletRequest request){
+	public Map<String, Object> deleteOne(HttpServletRequest request) {
 		String id = WebUtill.getParameter("id", request);
 		int pageno = Integer.parseInt(WebUtill.getParameter("pageno", request), 10);
 		int pagesize = Integer.parseInt(WebUtill.getParameter("pagesize", request), 10);
@@ -114,49 +132,67 @@ public class PageController {
 		String title = WebUtill.getParameter("title", request);
 		String start = WebUtill.getParameter("start", request);
 		String end = WebUtill.getParameter("end", request);
-		logger.info("id:"+id+",pageno:"+pageno+",pagesize:"+pagesize+",totalpage:"+totalpage);
-		
-		String file="/office";
+		logger.info("id:" + id + ",pageno:" + pageno + ",pagesize:" + pagesize + ",totalpage:" + totalpage);
+
+		String file = "/office";
 		String realPath = request.getServletContext().getRealPath(file);
-		logger.info("realPath:"+realPath);
-		
+		logger.info("realPath:" + realPath);
+
 		Map<String, Object> map = new HashMap<>();
-		if(id==null||id==""){
+		if (id == null || id == "") {
 			map.put("stute", 2);
 			map.put("erorr", "删除失败");
 			return map;
 		}
 		Integer deleteById = officeConverterService.deleteById(id, realPath);
-		if(deleteById==1){
-			//计算是否要减页数
+		if (deleteById == 1) {
+			// 计算是否要减页数
 			Map<String, Object> countMap = new HashMap<>();
 			countMap.put("type", type);
 			countMap.put("title", title);
 			countMap.put("start", start);
-			countMap.put("end",end);
+			countMap.put("end", end);
 			Integer count = officeConverterService.getCount(countMap);
 			Integer pageCount = PageUtill.getPageCount(count, pagesize);
-			if(pageCount==totalpage){
+			if (pageCount == totalpage) {
 				map.put("pageno", pageno);
-			}else {
-				map.put("pageno", pageno-1);
+			} else {
+				map.put("pageno", pageno - 1);
 			}
 			map.put("pagecount", pageCount);
 			map.put("datacount", count);
 			map.put("stute", 1);
-		}else {
+		} else {
 			map.put("stute", 2);
 			map.put("erorr", "删除失败");
 		}
 		return map;
 	}
-	@RequestMapping(value="/notice.do",method=RequestMethod.POST)
+
+	/**
+	 * 添加公告
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/notice.do", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> insertNotice(HttpServletRequest request){
+	public Map<String, Object> insertNotice(HttpServletRequest request) {
 		String content = WebUtill.getParameter("content", request);
 		String title = WebUtill.getParameter("title", request);
-		logger.info("content:"+content);
+		logger.info("content:" + content);
 		Map<String, Object> resultmap = officeConverterService.insertNotice(content, title);
 		return resultmap;
+	}
+
+	@RequestMapping("/getNotice.do")
+	@ResponseBody
+	public Map<String, Object> getNotice(HttpServletRequest request) {
+		String id = WebUtill.getParameter("id", request);
+
+		Map<String, Object> map = null;
+		map = officeConverterService.getOfficeById(id);
+
+		return map;
 	}
 }

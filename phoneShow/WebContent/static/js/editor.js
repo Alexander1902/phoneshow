@@ -38,7 +38,7 @@ function submit(content,title){
 			data:json,
 			scriptCharset:'UTF-8',
 			success: function(data){
-				alert(data.stute);
+				//alert(data.stute);
 				if(data.stute==1){
 					alert("发布成功！");
 					location.href="/phoneShow/page/editor.do";

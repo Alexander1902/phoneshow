@@ -5,30 +5,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.css"
-	type="text/css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/static/css/alloffice.css"
 	type="text/css">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/js/alloffice.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/jquery.tmpl.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
+	src="${pageContext.request.contextPath }/static/js/showAll.js"></script>
+</head>
 <body>
 	<h1>文档管理</h1>
-	类型：<select id="type"><option value="">请选择</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
-	标题：<input type="text" id="title">
-	开始时间：<input type="date" id="start"> 
-	结束时间：<input type="date" id="end"><button id="seach">查询</button>
-	<button id="clearbtn">清空</button>
+	类型：
+	<select id="type"><option value="">请选择</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option></select> 标题：
+	<input type="text" id="title"> 开始时间：
+	<input type="date" id="start"> 结束时间：
+	<input type="date" id="end">
+	<button id="seach">查询</button>
+	<button id="clearbtn">刷新</button>
 	<table class="table table-hover">
 		<tr>
 			<th>编号</th>
@@ -36,7 +34,6 @@
 			<th>类型</th>
 			<th>浏览</th>
 			<th>时间</th>
-			<th>操作</th>
 		</tr>
 		<tbody id="officeTable"></tbody>
 	</table>
