@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,19 +13,24 @@
 	type="text/css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/static/js/show.js"></script>
 </head>
 <body>
-<c:choose>
-	<c:when test="${stute=='1' }">
-		<script>alert("上传成功！");
-			location.href="/phoneShow/page/show.do";
-		</script>
-	</c:when>
-	<c:when test="${stute=='2' }">
-		<script>alert("上传失败！");</script>
-	</c:when>
-	<c:otherwise></c:otherwise>
-</c:choose>
+	<c:choose>
+		<c:when test="${stute=='1' }">
+			<script>
+				alert("上传成功！");
+				location.href = "/phoneShow/page/show.do";
+			</script>
+		</c:when>
+		<c:when test="${stute=='2' }">
+			<script>
+				alert("上传失败！");
+			</script>
+		</c:when>
+		<c:otherwise></c:otherwise>
+	</c:choose>
 	<h1>你好，世界！</h1>
 	<div class="dropdown">
 		<button class="btn btn-default dropdown-toggle" type="button"
@@ -46,8 +51,8 @@
 	<form action="${pageContext.request.contextPath }/upload/upload.do"
 		method="post" enctype="multipart/form-data">
 		<textarea rows="2" cols="4" name="title"></textarea>
-		<input id="up_img" name="upload" type="file">
-		<input type="submit" value="提交">
+		<input id="up_img" name="upload" type="file"> <input
+			type="submit" value="提交" onclick="return uplaod()">
 	</form>
 </body>
 </html>
