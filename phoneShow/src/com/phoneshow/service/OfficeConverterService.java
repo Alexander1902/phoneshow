@@ -12,4 +12,5 @@ public interface OfficeConverterService {
 	public Integer deleteById(String id,String path);
 	public Map<String, Object> getOfficeById(String id);
 	public Map<String, Object> insertNotice(String content,String title);
+	public void updateOffice(String title,String id);
 }

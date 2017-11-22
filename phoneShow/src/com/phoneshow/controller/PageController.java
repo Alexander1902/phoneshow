@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,9 +73,9 @@ public class PageController {
 		pagesize = Integer.parseInt(WebUtill.getParameter("pagesize", request), 10);
 		String type = WebUtill.getParameter("type", request);
 		String title = WebUtill.getParameter("title", request);
+		//解决乱码
 		try {
-			System.out.println("title------------" + new String(title.getBytes("gbk"), "UTF-8"));
-			System.out.println("title------------" + request.getParameter("title"));
+			title=URLDecoder.decode(title, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -192,7 +193,39 @@ public class PageController {
 
 		Map<String, Object> map = null;
 		map = officeConverterService.getOfficeById(id);
+		return map;
+	}
 
+	/**
+	 * Administrator
+	 * TODO 修改title 返回json stute的1成功，2失败
+	 */
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public Map<String, Object> updateOffice(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		String id = WebUtill.getParameter("id", request);
+		String title = WebUtill.getParameter("title", request);
+		try {
+			title=URLDecoder.decode(title, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Map<String,Object> map=new HashMap<>();
+		try {
+			officeConverterService.updateOffice(title, id);
+			map.put("stute", 1);
+			map.put("id", id);
+			map.put("title", title);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("stute", 2);
+		}
 		return map;
 	}
 }

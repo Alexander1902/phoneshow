@@ -21,49 +21,51 @@ import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.util.ExcelToHtml;
 import com.phoneshow.util.MyDateUtil;
 import com.phoneshow.util.WordToHtml;
+
 @Service
 public class OfficeConverterServiceImp implements OfficeConverterService {
-	Logger log = Logger.getLogger(OfficeConverterServiceImp.class); 
+	Logger log = Logger.getLogger(OfficeConverterServiceImp.class);
 	@Autowired
 	private OfficeDao officeDao;
-	
-	/* 识别文件类型，转换格式,数据入库
-	 *  VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
-	 * @see 
+
+	/*
+	 * 识别文件类型，转换格式,数据入库 VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
+	 * 
+	 * @see
 	 */
 	@Override
-	public int officeConverter(String filepath, String fileName,String expandname,String title) {
-		if(!filepath.endsWith(File.separator)){
-			filepath=filepath+File.separator;
+	public int officeConverter(String filepath, String fileName, String expandname, String title) {
+		if (!filepath.endsWith(File.separator)) {
+			filepath = filepath + File.separator;
 		}
-		expandname=expandname.substring(1);//扩展名
+		expandname = expandname.substring(1);// 扩展名
 		String date = MyDateUtil.TimeShow();
 		UUID randomUUID = UUID.randomUUID();
 		String id = randomUUID.toString();
-		log.info("srvice"+expandname);
+		log.info("srvice" + expandname);
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			map.put("id", id);
 			map.put("title", title);
 			map.put("content", "");
 			map.put("date", date);
-			if(expandname.equals("doc")||expandname.equals("DOC")){
+			if (expandname.equals("doc") || expandname.equals("DOC")) {
 				map.put("type", "1");
-				String url = fileName.substring(0, fileName.indexOf('.'))+"word.html";//输出文件
+				String url = fileName.substring(0, fileName.indexOf('.')) + "word.html";// 输出文件
 				map.put("url", url);
 				WordToHtml.Word2003ToHtml(filepath, fileName);
 				officeDao.insertOffice(map);
-			}else if (expandname.equals("xls")||expandname.equals("XLS")) {
+			} else if (expandname.equals("xls") || expandname.equals("XLS")) {
 				ExcelToHtml.Excel2003ToHtml(filepath, fileName);
 				map.put("type", "2");
-				String url = fileName.substring(0, fileName.indexOf('.'))+"excl.html";//输出文件
+				String url = fileName.substring(0, fileName.indexOf('.')) + "excl.html";// 输出文件
 				map.put("url", url);
 				officeDao.insertOffice(map);
 				Map<String, Object> hMap = new HashMap<>();
-				
+
 				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
 				for (Map<String, String> map2 : selectOffice) {
-					System.out.println(map2.get("url")+"测试");
+					System.out.println(map2.get("url") + "测试");
 				}
 			}
 		} catch (Exception e) {
@@ -72,15 +74,18 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		}
 		return 1;
 	}
+
 	/*
 	 * 文档管理，分页，查询
-	 * @see com.phoneshow.service.OfficeConverterService#getOffice(java.util.Map)
+	 * 
+	 * @see
+	 * com.phoneshow.service.OfficeConverterService#getOffice(java.util.Map)
 	 */
 	@Override
 	public List<Map<String, String>> getOffice(Map<String, Object> map) {
 		List<Map<String, String>> selectOffice = officeDao.selectOffice(map);
 		Integer selectCount = officeDao.selectCount(map);
-		//log.info("title"+map.get("title"));
+		// log.info("title"+map.get("title"));
 		Map<String, Object> pageMap = new HashMap<>();
 		pageMap.put("selectCount", selectCount);
 		pageMap.put("selectOffice", selectOffice);
@@ -94,16 +99,16 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 	}
 
 	@Override
-	public Integer deleteById(String id,String path) {
-		if(id==null||id==""){
-			return 2;//失败
+	public Integer deleteById(String id, String path) {
+		if (id == null || id == "") {
+			return 2;// 失败
 		}
 		try {
 			Map<String, Object> office = officeDao.getOfficeById(id);
-			String url= (String) office.get("url");
+			String url = (String) office.get("url");
 			File myFile = new File(path, url);
 			try {
-				if(!myFile.exists()){
+				if (!myFile.exists()) {
 					log.info("文件不存在");
 				}
 				myFile.delete();
@@ -114,24 +119,26 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 			officeDao.deleteById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 2;//失败
+			return 2;// 失败
 		}
-		return 1;//1成功
+		return 1;// 1成功
 	}
+
 	@Override
 	public Map<String, Object> getOfficeById(String id) {
-		Map<String, Object> map =null;
-		if(id==""||id==null){
+		Map<String, Object> map = null;
+		if (id == "" || id == null) {
 			return map;
 		}
-		map= officeDao.getOfficeById(id);
+		map = officeDao.getOfficeById(id);
 		return map;
 	}
-	/* (non-Javadoc)
-	 *VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
+
+	/*
+	 * (non-Javadoc) VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
 	 */
 	@Override
-	public Map<String, Object> insertNotice(String content,String title) {
+	public Map<String, Object> insertNotice(String content, String title) {
 		String date = MyDateUtil.TimeShow();
 		UUID randomUUID = UUID.randomUUID();
 		String id = randomUUID.toString();
@@ -153,8 +160,20 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		return result;
 	}
 
-	
-	
-	
+	/*
+	 * Administrator TODO修改文档的title
+	 */
+	@Override
+	public void updateOffice(String title, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("title", title);
+		map.put("id", id);
+		int updateOffice = officeDao.updateOffice(map);
+		if(updateOffice>0){
+			log.info("修改成功："+title);
+		}else {
+			log.info("修改失败！"+title);
+		}
+	}
 
 }

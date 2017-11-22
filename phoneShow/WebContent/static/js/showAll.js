@@ -66,6 +66,7 @@ function initData(json){//页码，每页的size
 function search(num){
 	var type=$("#type").val();
 	var title=$("#title").val();
+	var titleencode=encodeURI(encodeURI(title));
 	var start=$("#start").val();
 	var end=$("#end").val();
 	/*if(((start==""||start==null)&&(end!=""||end!=null))||((start!=""||start!=null)&&(end==""||end==null))){
@@ -89,9 +90,9 @@ function search(num){
 		return;
 	}
 
-	
+	alert(titleencode);
 	console.log("type:"+type+",title:"+title+",start:"+start+",end:"+end);
-	var cond={"pageno":1,"pagesize":pageSize,"type":type,"title":title,"start":start,"end":end};
+	var cond={"pageno":1,"pagesize":pageSize,"type":type,"title":titleencode,"start":start,"end":end};
 	initData(cond);
 }
 /*
@@ -104,7 +105,7 @@ function showHtml(data){
 		html+="<tr>";
 		html+="<td>"+(o+1);
 		html+="</td>";
-		html+="<td>"+data[o].title;
+		html+="<td id='"+data[o].id+"'>"+data[o].title;
 		html+="</td>";
 		html+="<td>"+data[o].type;
 		html+="</td>";

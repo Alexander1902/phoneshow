@@ -47,4 +47,7 @@
 	<delete id="deleteById" parameterType="java.lang.String">
 		DELETE FROM office WHERE id=#{id}
 	</delete>
+	<update id="updateOffice" parameterType="java.util.Map">
+		UPDATE office o SET o.title=#{title} WHERE o.id=#{id}
+	</update>
 </mapper>
