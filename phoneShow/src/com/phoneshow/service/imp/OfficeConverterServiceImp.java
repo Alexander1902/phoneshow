@@ -1,18 +1,12 @@
 package com.phoneshow.service.imp;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
 import org.apache.log4j.Logger;
-import org.jcp.xml.dsig.internal.MacOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +14,7 @@ import com.phoneshow.dao.OfficeDao;
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.util.ExcelToHtml;
 import com.phoneshow.util.MyDateUtil;
+import com.phoneshow.util.PptToHtml;
 import com.phoneshow.util.WordToHtml;
 
 @Service
@@ -44,6 +39,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		String id = randomUUID.toString();
 		log.info("srvice" + expandname);
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(fileName+"fileName????");
 		try {
 			map.put("id", id);
 			map.put("title", title);
@@ -60,6 +56,21 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 				map.put("type", "2");
 				String url = fileName.substring(0, fileName.indexOf('.')) + "excl.html";// 输出文件
 				map.put("url", url);
+				officeDao.insertOffice(map);
+				Map<String, Object> hMap = new HashMap<>();
+
+				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
+				for (Map<String, String> map2 : selectOffice) {
+					System.out.println(map2.get("url") + "测试");
+				}
+			}else if (expandname.equals("ppt") || expandname.equals("PPT")) {
+				
+				HashMap<String, Object> hs = PptToHtml.doPPTtoHtml(filepath, fileName);
+				map.put("type", "4");
+				if(hs != null){
+					map.put("url",hs.get("htmlURL") );
+					System.out.println("HTML的真实路径是："+hs.get("htmlURL"));
+				}
 				officeDao.insertOffice(map);
 				Map<String, Object> hMap = new HashMap<>();
 
@@ -154,6 +165,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		map.put("url", "");
 		map.put("date", MyDateUtil.TimeShow());
 		try {
+			log.info(map);
 			officeDao.insertOffice(map);
 			result.put("stute", 1);
 		} catch (Exception e) {
