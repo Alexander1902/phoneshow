@@ -95,7 +95,7 @@ public class PageController {
 		datamap.put("title", "%" + title + "%");
 		datamap.put("start",
 				start != null && start != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)) : "");
-		datamap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)) : "");
+		datamap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.AddDay(MyDateUtil.StringDateToDate(end), 1)) : "");
 		List<Map<String, String>> office = officeConverterService.getOffice(datamap);
 
 		Map<String, Object> countmap = new HashMap<String, Object>();
