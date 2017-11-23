@@ -2,7 +2,9 @@ package com.phoneshow.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MyDateUtil {
 	static final String time_name="yyyy-MM-dd-HH-mm-ss";
@@ -62,5 +64,22 @@ public class MyDateUtil {
 		String format2 = format.format(date);
 		return format2;
 	}
+	
+	/**
+	 * Administrator
+	 * TODO给日期加指定的天数
+	 */
+	public static Date AddDay(Date date,int day){
+		Calendar calendar = new GregorianCalendar();
+		calendar.setTime(date);
+		calendar.add(Calendar.DATE, day);
+		return calendar.getTime();
+	}
 
+	public static void main(String[] args) {
+		Date date = new Date();
+		System.out.println(MyDateUtil.DateToString(date));
+		Date addDay = MyDateUtil.AddDay(date, 1);
+		System.out.println(MyDateUtil.DateToString(addDay));
+	}
 }

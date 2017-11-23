@@ -103,7 +103,7 @@ public class PageController {
 		countmap.put("title", "%" + title + "%");
 		countmap.put("start",
 				start != null && start != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(start)) : "");
-		countmap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.StringDateToDate(end)) : "");
+		countmap.put("end", end != null && end != "" ? MyDateUtil.DateToString(MyDateUtil.AddDay(MyDateUtil.StringDateToDate(end), 1)) : "");
 		Integer datacount = officeConverterService.getCount(countmap);
 		logger.info("datacount:" + datacount + ",取到数据量：" + office.size());
 
