@@ -66,7 +66,7 @@ function initData(json){//页码，每页的size
 function search(num){
 	var type=$("#type").val();
 	var title=$("#title").val();
-	var titleencode=encodeURI(encodeURI(title));
+	var titleencode=encodeURI(title);
 	var start=$("#start").val();
 	var end=$("#end").val();
 	/*if(((start==""||start==null)&&(end!=""||end!=null))||((start!=""||start!=null)&&(end==""||end==null))){

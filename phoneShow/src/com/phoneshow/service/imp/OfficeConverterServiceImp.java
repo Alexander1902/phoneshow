@@ -98,6 +98,9 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		return selectCount;
 	}
 
+	/* Administrator
+	 * TODO删除数据，同时删除html原件
+	 */
 	@Override
 	public Integer deleteById(String id, String path) {
 		if (id == null || id == "") {
