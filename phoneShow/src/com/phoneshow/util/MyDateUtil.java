@@ -10,6 +10,10 @@ public class MyDateUtil {
 	static final String time_name="yyyy-MM-dd-HH-mm-ss";
 	 static final String time_show="yyyy-MM-dd HH:mm";
 	 static final String date_show="yyyy-MM-dd";
+	/**
+	 * Administrator
+	 * TODO±ä³Éyyyy-MM-dd-HH-mm-ssµÄ×Ö·û´®
+	 */
 	public static String DateAndTime(){
 		SimpleDateFormat format = new SimpleDateFormat(time_name);
 		Date date = new Date();
