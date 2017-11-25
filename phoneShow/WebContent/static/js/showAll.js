@@ -10,6 +10,8 @@ $(function(){
 	$("#clearbtn").click(function(){
 		relaod();
 	});
+	date();
+	
 })
 //刷新整个页面
 function relaod(){
@@ -51,10 +53,15 @@ function initData(json){//页码，每页的size
 			datatype: 'json',
 			data:json,
 			scriptCharset:'UTF-8',
+			beforeSend:function(XMLHttpRequest){ 
+	              //alert('远程调用开始...'); 
+				  layer.load(2);
+	        }, 
 			success: function(data){
 				totalPage=data.pagecount;//总页数
 				totalSize=data.datacount;//数据总量
 				curpage=data.pageno;
+				layer.closeAll('loading');
 				showHtml(data.office);
 				changPage(curpage,totalPage,totalSize,json);
 			}
@@ -74,23 +81,28 @@ function search(num){
 		return;
 	}*/
 	if(start==""&&end!=""){
-		alert("请选择开始日期");
+//		alert("请选择开始日期");
+		layer.msg('请选择开始日期');
 		return;
 	}
 	if(start==null&&end!=null){
-		alert("请选择开始日期");
+//		alert("请选择开始日期");
+		layer.msg('请选择开始日期');
 		return;
 	}
 	if(start!=""&&end==""){
-		alert("请选择结束日期");
+//		alert("请选择结束日期");
+		layer.msg('请选择结束日期');
 		return;
 	}
 	if(start!=null&&end==null){
-		alert("请选择结束日期");
+//		alert("请选择结束日期");
+		layer.msg('请选择结束日期');
 		return;
 	}
 
-	alert(titleencode);
+//	alert(titleencode);
+	layer.msg(titleencode);
 	console.log("type:"+type+",title:"+title+",start:"+start+",end:"+end);
 	var cond={"pageno":1,"pagesize":pageSize,"type":type,"title":titleencode,"start":start,"end":end};
 	initData(cond);
@@ -128,9 +140,14 @@ function fulshHtml(jsondata){
 			type: "POST",
 			datatype: 'json',
 			data:jsondata,
+			beforeSend:function(XMLHttpRequest){ 
+	              //alert('远程调用开始...'); 
+				  layer.load(2);
+	        }, 
 			success: function(data){
 				totalPage=data.pagecount;//总页数
 				totalSize=data.datacount;//数据总量
+				layer.closeAll('loading');
 				showHtml(data.office);
 			}
 		};
@@ -143,4 +160,37 @@ function pageSizeChonge(){
 	var json={"pageno":1,"pagesize":pageSize};
 	//initData(json);
 	search();
+}
+
+//时间
+function date(){
+	$('#start').datetimepicker({
+		language:  'zh-CN',
+		format:"yyyy-mm-dd",    //格式化日期
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    }).on('changeDate',function(e){  
+        var startTime =$('#start').val();  
+        $('#end').datetimepicker('setStartDate',startTime);  
+    });
+	
+	$('#end').datetimepicker({
+		language:  'zh-CN',
+		format:"yyyy-mm-dd",    //格式化日期
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    }).on('changeDate',function(e){  
+        var endtTime =$('#end').val();  
+        $('#start').datetimepicker('setStartDate',endtTime);  
+    });
 }

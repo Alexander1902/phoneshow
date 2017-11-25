@@ -1,66 +1,129 @@
-<style>
-			* {
-				padding: 0;
-				margin: 0;
-			}
-			/*
-			  * 外面盒子样式---自己定义
-			  */
-			
-			.page_div {
-				margin-top: 20px;
-				margin-bottom: 20px;
-				font-size: 15px;
-				font-family: "microsoft yahei";
-				color: #666666;
-				margin-right: 10px;
-				padding-left: 20px;
-				box-sizing: border-box;
-			}
-			/*
-			 * 页数按钮样式
-			 */
-			
-			.page_div a {
-				min-width: 30px;
-				height: 28px;
-				border: 1px solid #dce0e0!important;
-				text-align: center;
-				margin: 0 4px;
-				cursor: pointer;
-				line-height: 28px;
-				color: #666666;
-				font-size: 13px;
-				display: inline-block;
-			}
-			
-			#firstPage,
-			#lastPage {
-				width: 50px;
-				color: #0073A9;
-				border: 1px solid #0073A9!important;
-			}
-			
-			#prePage,
-			#nextPage {
-				width: 70px;
-				color: #0073A9;
-				border: 1px solid #0073A9!important;
-			}
-			
-			.page_div .current {
-				background-color: #0073A9;
-				border-color: #0073A9;
-				color: #FFFFFF;
-			}
-			
-			.totalPages {
-				margin: 0 10px;
-			}
-			
-			.totalPages span,
-			.totalSize span {
-				color: #0073A9;
-				margin: 0 5px;
-			}
-		</style>
+
+/*
+  * 外面盒子样式---自己定义
+  */
+
+.page_div {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 15px;
+	font-family: "microsoft yahei";
+	color: #666666;
+	margin-right: 10px;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+
+/*页面样式 */
+#content-main{
+	padding:20px;
+}
+.page-title{
+	margin:0;
+	margin-bottom:20px;
+	font-size:20px/150%;
+	color:#256996;
+}
+.qry-group>div>label{
+	font-weight:normal;
+}
+#type,#title,.time>input{
+	width:70%;
+	height:25px;
+	border:1px solid #3E4B7D;
+	border-radius:4px;
+}
+.time>input{
+  width:60%;
+}
+#title,.time>input{
+	padding-left:5px;
+}
+.qry-group>div{
+	padding:0!important;
+}
+
+.com-btn button{
+	width:45%;
+	height:30px;
+	border:none;
+	background:#3E4B7D;
+	border-radius:4px;
+	color:#fff;
+}
+.com-btn button:hover,#page>a:hover{
+	border:1px solid #3E4B7D;
+	background:#fff;
+	color:#3E4B7D;
+}
+.show-table{
+	margin-top:20px;
+	height:390px;
+}
+.table>thead{
+	background:#3E4B7D;
+	color:#fff;
+}
+.table tr td{
+	text-align:center;
+}
+.table>tbody>tr:hover{
+	background:#ccc;
+	cursor: pointer;
+}
+.table>tbody td>a:hover{
+	color:#3E4B7D!important;
+	text-decoration:underline;
+	font-weight:bold;
+}
+/*
+ * 页数按钮样式
+ */
+#page{
+	text-align:center;
+	margin-top:50px;
+}
+#page>a{
+	min-width: 30px;
+	height: 28px;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 28px;
+	color: #fff;
+	font-size: 13px;
+	display: inline-block;
+	background:#3E4B7D;
+	border-radius:4px;
+	color:#fff;
+	border:1px solid #3E4B7D;
+	text-decoration: none;
+}
+
+#firstPage,
+#lastPage {
+	width: 50px;
+	border:1px solid #3E4B7D;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	border:1px solid #3E4B7D;
+}
+
+.page_div .current {
+	border:1px solid #3E4B7D!important;
+	background:#fff!important;
+	color:#3E4B7D!important;
+}
+
+.totalPages {
+	margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #0073A9;
+	margin: 0 5px;
+}
