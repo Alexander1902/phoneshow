@@ -1,49 +1,101 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>文档管理</title>
+	<!--[if lt IE 9]>
+	    <meta http-equiv="refresh" content="0;ie.html" />
+	<![endif]-->
+
+    <link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/animate.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/alloffice.css" type="text/css">
+
 </head>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/css/alloffice.css"
-	type="text/css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/js/alloffice.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/jquery.tmpl.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
 <body>
-	<h1>文档管理</h1>
-	类型：<select id="type"><option value="">请选择</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select>
-	标题：<input type="text" id="title">
-	开始时间：<input type="date" id="start"> 
-	结束时间：<input type="date" id="end"><button id="seach">查询</button>
-	<button id="clearbtn">清空</button>
-	<table class="table table-hover">
-		<tr>
-			<th>编号</th>
-			<th>标题</th>
-			<th>类型</th>
-			<th>浏览</th>
-			<th>时间</th>
-			<th>操作</th>
-		</tr>
-		<tbody id="officeTable"></tbody>
-	</table>
-	<select id="pagesize" onchange="pageSizeChonge();"><option
-			value="10">10</option>
-		<option value="5">5</option></select>
-	<div value="1 0"></div>
-	<div id="page" class="page_div"></div>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+         <%@ include file="comLeftNav.jsp" %>
+         <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+		            <h1 class="page-title">文档管理</h1>
+		            <div class="qry-group clearfix">
+			            <div class="select-type col-sm-2">
+			                <label>类型：</label>
+			                <select id="type">
+							     <option value="">请选择</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+					        </select>
+			            </div>
+						<div class="col-sm-2">
+						    <label> 标题：</label>
+						    <input type="text" id="title">
+						</div>
+						
+						 <div class="time col-sm-3">
+						     <label> 开始时间：</label>
+							<input type="text" value="" id="start">
+						     <!--<input type="date" id="start">  -->
+						 </div>
+						<div class="time col-sm-3">
+						    <label> 结束时间：</label>
+						    <input type="text" value="" id="end">
+						   <!--<input type="date" id="end">  -->
+						</div>
+						<div class="com-btn col-sm-2">
+						   <button id="seach" >查询</button>
+						   <button id="clearbtn">刷新</button>
+						</div>
+						
+					</div>
+					<div class="show-table">
+						<table class="table table-hover">
+							<thead>
+								<td>编号</td>
+								<td>标题</td>
+								<td>类型</td>
+								<td>浏览</td>
+								<td>时间</td>
+							<tbody id="officeTable"></tbody>
+						</table>
+					</div>
+					<div value="1 0"></div>
+					<div id="page" class="page_div"></div>
+				 </div>
+		    </div>
+        </div>
+        
+
+    <!-- 全局js -->
+    <script src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/datapicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/datapicker/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/layer/layer.min.js"></script>
+    <!-- 自定义js -->
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/hAdmin.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/showAll.js"></script>
 </body>
 </html>
