@@ -1,21 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>上传文件</title>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.css"
-	type="text/css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath }/static/js/show.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <title>文件上传</title>
+	<!--[if lt IE 9]>
+	    <meta http-equiv="refresh" content="0;ie.html" />
+	<![endif]-->
+
+    <link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/animate.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
+
 </head>
+<body>
+<body class="fixed-sidebar full-height-layout gray-bg">
+    <div id="wrapper">
+         <%@ include file="comLeftNav.jsp" %>
+         <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-info " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                </nav>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+				<h1 class="page-title">文件上传</h1>
+				<div class="content clearfix">
+				    <!-- 左侧表单 -->
+				    <div class="left-box col-sm-6">
+				        <h3>点击下方上传文件</h3>
+					    <form class="upload" action="${pageContext.request.contextPath }/upload/upload.do"
+							method="post" enctype="multipart/form-data">
+						<!-- 	<textarea rows="2" cols="4" name="title"></textarea> -->
+							<input type="text" value="" name="title" class="send-title" placeholder="请输入公告标题">
+							<input id="up_img" name="upload" type="file"> 
+							<div class="send com-btn">
+						        <button id="submit" onclick="return uplaod()">提交</button>
+						   </div>
+							<!-- <input
+								type="submit" value="提交" onclick="return uplaod()"> -->
+						</form>
+					</div>
+					<!-- 右侧可上传的图标 -->
+					<div class="right-box col-sm-6">
+					   <h3>可上传的文件类型</h3>
+					   <span class="circle1">Word</span>
+					   <span class="circle2">Excel</span>
+					   <span class="circle3">ppt</span>
+					</div>
+					<div class="bottom-box">
+						<img src="${pageContext.request.contextPath }/static/css/timg.jpg">
+					</div>
+				</div>
+				
+			</body>
+				
+		    </div>
+        </div>
+        
+
+    <!-- 全局js -->
+    <script src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/metisMenu/jquery.metisMenu.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/layer/layer.min.js"></script>
+    <!-- 自定义js -->
+    <script src="${pageContext.request.contextPath }/static/hadmin/js/hAdmin.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/show.js"></script>
+    <c:choose>
+			<c:when test="${stute=='1' }">
+				<script>
+					//alert("上传成功！");
+					layer.msg('上传成功！');
+					location.href = "/phoneShow/page/show.do";
+				</script>
+			</c:when>
+			<c:when test="${stute=='2' }">
+				<script>
+					//alert("上传失败！");
+					layer.msg('上传失败！');
+				</script>
+			</c:when>
+			<c:otherwise></c:otherwise>
+		</c:choose>
+</body>
+</html>
+
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <body>
 	<c:choose>
 		<c:when test="${stute=='1' }">
@@ -55,4 +142,4 @@
 			type="submit" value="提交" onclick="return uplaod()">
 	</form>
 </body>
-</html>
+</html> --%>

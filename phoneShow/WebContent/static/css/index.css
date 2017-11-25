@@ -15,3 +15,108 @@ img { border: 0; max-width: 100%; }
 .navbar-static-side{
 	float:left;
 }
+
+.introduce{
+	padding:10% 0;
+	font-size:18px;
+	font-weight:bold;
+	color:#256996;
+	text-align:center;
+	line-height:35px;
+}
+#content-main{
+	padding:20px;
+}
+.page-title{
+	margin:0;
+	margin-bottom:20px;
+	font-size:20px/150%;
+	color:#256996;
+}
+.send{
+	padding-top:10px;
+	padding-right:50px;
+	text-align:right;
+}
+.send button{
+	width:50px;
+	height:30px;
+	border:none;
+	background:#3E4B7D;
+	border-radius:4px;
+	color:#fff;
+}
+.com-btn button:hover{
+	border:1px solid #3E4B7D;
+	background:#fff;
+	color:#3E4B7D;
+}
+.send-title{
+	width:45%;
+	height:30px;
+	border:1px solid #3E4B7D;
+	border-radius:4px;
+	padding-left:5px;
+	outline:none;
+}
+/*
+ 文件上传页面
+  */
+/*  form.upload{
+    width:90%;
+    margin:0 auto;
+    border:3px dashed #8A6F91;
+ } */
+ .content{
+    width:95%;
+    height:90%;
+    margin:0 auto;
+    border:3px dashed #8A6F91;
+    padding:20px;
+ }
+.upload .send{
+   margin-right:10%;
+ }
+ .upload{
+   width:90%;
+   margin:20px auto;
+ }
+  .upload .send-title{
+    width:80%;
+    margin-bottom:30px;
+  }
+  .right-box,.left-box{
+     height:40%;
+  }
+ .right-box>span{
+     display:inline-block;
+     width:12%;
+     text-align:center;
+     line-height:70px;
+     color:#fff;
+     margin-right:4%;
+     vertical-align:bottom;
+  }
+  .circle1{
+     background:#668F99;
+     height:80px;
+     margin-left:15%;
+  }
+   .circle2{
+     background:#83916F;
+      height:110px;
+     
+  }
+  .circle3{
+     background:#88777E;
+     height:135px;
+  }
+  .bottom-box{
+    clear:both;
+    height:60%;
+    text-align:center;
+  }
+  .bottom-box>img{
+    height:100%;
+  }
+  

@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<body class="fixed-sidebar full-height-layout gray-bg">
     <div id="wrapper">
          
             <div class="row J_mainContent" id="content-main">

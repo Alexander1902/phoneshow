@@ -21,19 +21,19 @@
              </li>
              <li>
                  <a class="J_menuItem" href="${pageContext.request.contextPath }/page/show.do">
-                     <i class="fa fa-home"></i>
+                      <i class="fa fa-edit"></i>
                      <span class="nav-label">上传文件</span>
                  </a>
              </li>
              <li>
                  <a href="${pageContext.request.contextPath }/page/alloffice.do">
-                     <i class="fa fa fa-bar-chart-o"></i>
+                     <i class="fa fa-table"></i>
                      <span class="nav-label">文档管理</span>
                  </a>
              </li>
               <li>
                  <a href="${pageContext.request.contextPath }/page/editor.do">
-                     <i class="fa fa fa-bar-chart-o"></i>
+                      <i class="fa fa-envelope"></i>
                      <span class="nav-label">信息发布</span>
                  </a>
              </li>

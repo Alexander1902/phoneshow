@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<body class="fixed-sidebar full-height-layout gray-bg">
     <div id="wrapper">
          <%@ include file="comLeftNav.jsp" %>
          <div id="page-wrapper" class="gray-bg dashbard-1">

@@ -17,13 +17,15 @@ $(function(){
 		var content=UE.getEditor('editor').getContent();
 		var title = $("#title").val();
 		if(content.length>=21650){
-			alert("内容有些长，请减少格式或减少字数");
+//			alert("内容有些长，请减少格式或减少字数");
+			layer.msg('内容有些长，请减少格式或减少字数期');
 			return;
 		}
 		console.log(content.length);
 		
 		if(content.length==0||title.length==0){
-			alert("标题或内容不能为空！");
+//			alert("标题或内容不能为空！");
+			layer.msg('标题或内容不能为空！');
 			return;
 		}
 		submit(content,title);
@@ -40,10 +42,12 @@ function submit(content,title){
 			success: function(data){
 				//alert(data.stute);
 				if(data.stute==1){
-					alert("发布成功！");
+//					alert("发布成功！");
+					layer.msg("发布成功！");
 					location.href="/phoneShow/page/editor.do";
 				}else{
-					alert("发布失败！");
+//					alert("发布失败！");
+					layer.msg("发布失败！");
 				}
 			}
 		};
