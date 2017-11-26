@@ -34,15 +34,16 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-		            <h1 class="page-title">文档管理</h1>
+		            <!-- <h1 class="page-title">文档管理</h1> -->
 		            <div class="qry-group clearfix">
 			            <div class="select-type col-sm-2">
 			                <label>类型：</label>
 			                <select id="type">
 							     <option value="">请选择</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+								<option value="1">Word</option>
+								<option value="2">Excel</option>
+								<option value="3">公告</option>
+								<option value="3">PPT</option>
 					        </select>
 			            </div>
 						<div class="col-sm-2">
@@ -74,6 +75,7 @@
 								<td>类型</td>
 								<td>浏览</td>
 								<td>时间</td>
+								<td>操作</td>
 							<tbody id="officeTable"></tbody>
 						</table>
 					</div>
@@ -96,6 +98,6 @@
     <script src="${pageContext.request.contextPath }/static/hadmin/js/hAdmin.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/static/jquery/paging.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/showAll.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/alloffice.js"></script>
 </body>
 </html>

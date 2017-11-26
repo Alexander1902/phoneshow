@@ -102,7 +102,7 @@ function search(num){
 	}
 
 //	alert(titleencode);
-	layer.msg(titleencode);
+//	layer.msg(titleencode);
 	console.log("type:"+type+",title:"+title+",start:"+start+",end:"+end);
 	var cond={"pageno":1,"pagesize":pageSize,"type":type,"title":titleencode,"start":start,"end":end};
 	initData(cond);
@@ -139,6 +139,8 @@ function showHtml(data){
 		}
 		html+="</td>";
 		html+="<td>"+data[o].date;
+		html+="</td>";
+		html+="<td><button onclick=\"deleteIt('"+data[o].id+"','"+data[o].title+"')\">删除</button>";
 		html+="</td>";
 		html+="</tr>";
 		$("#officeTable").append(html);
@@ -204,4 +206,40 @@ function date(){
         var endtTime =$('#end').val();  
         $('#start').datetimepicker('setStartDate',endtTime);  
     });
+}
+/*
+ * 传入后台总页数，id
+ */
+function deleteIt(id,title){
+	var r=confirm("确定要删除“"+title+"”吗？");
+	if(r){
+		var type=$("#type").val();
+		var title=$("#title").val();
+		var start=$("#start").val();
+		var end=$("#end").val();
+		var jsondata={"id":id,"totalpage":totalPage,"pageno":curpage,"pagesize":pageSize,
+				"type":type,"title":title,"start":start,"end":end};
+		var _param={
+				url: "/phoneShow/page/delete.do",
+				type: "GET",
+				datatype: 'json',
+				data:jsondata,
+				success: function(data){
+					if(data.stute==1){
+						totalPage=data.pagecount;//总页数
+						totalSize=data.datacount;//数据总量
+						curpage=data.pageno;
+						var cond={"pageno":curpage,"pagesize":pageSize,"type":type,"title":title,"start":start,"end":end};
+						initData(cond);
+					}else{
+						alert("删除失败！");
+					}
+					
+				}
+			};
+			$.ajax(_param);
+	}else{
+		return;
+	}
+	
 }
