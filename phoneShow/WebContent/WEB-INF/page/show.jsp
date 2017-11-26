@@ -83,15 +83,15 @@
     <c:choose>
 			<c:when test="${stute=='1' }">
 				<script>
-					//alert("上传成功！");
-					layer.msg('上传成功！');
+					alert("上传成功！");
+					//layer.msg('上传成功！');
 					location.href = "/phoneShow/page/show.do";
 				</script>
 			</c:when>
 			<c:when test="${stute=='2' }">
 				<script>
-					//alert("上传失败！");
-					layer.msg('上传失败！');
+					alert("上传失败！");
+					//layer.msg('上传失败！');
 				</script>
 			</c:when>
 			<c:otherwise></c:otherwise>

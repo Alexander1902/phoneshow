@@ -43,7 +43,7 @@
 								<option value="1">Word</option>
 								<option value="2">Excel</option>
 								<option value="3">公告</option>
-								<option value="3">PPT</option>
+								<option value="4">PPT</option>
 					        </select>
 			            </div>
 						<div class="col-sm-2">
