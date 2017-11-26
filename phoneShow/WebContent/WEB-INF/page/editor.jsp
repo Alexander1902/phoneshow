@@ -32,7 +32,7 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-                 <h1 class="page-title">信息发布</h1>
+                 <!-- <h1 class="page-title">信息发布</h1> -->
 				<!--<textarea rows="5" cols="50" id="title"></textarea> -->
 				<input type="text" value="" id="title" class="send-title" placeholder="请输入公告标题">
 				<script id="editor" type="text/plain"

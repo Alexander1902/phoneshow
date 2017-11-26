@@ -34,7 +34,7 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-				<h1 class="page-title">文件上传</h1>
+				<!-- <h1 class="page-title">文件上传</h1> -->
 				<div class="content clearfix">
 				    <!-- 左侧表单 -->
 				    <div class="left-box col-sm-6">

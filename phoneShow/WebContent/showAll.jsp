@@ -33,9 +33,10 @@
 			                <label>类型：</label>
 			                <select id="type">
 							     <option value="">请选择</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
+								<option value="1">Word</option>
+								<option value="2">Excel</option>
+								<option value="3">公告</option>
+								<option value="4">PPT</option>
 					        </select>
 			            </div>
 						<div class="col-sm-2">
