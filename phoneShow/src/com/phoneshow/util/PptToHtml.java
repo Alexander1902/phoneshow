@@ -44,7 +44,7 @@ public class PptToHtml {
 	     */
 	    
 		@SuppressWarnings("unused")
-		private static HashMap<String, Object> doPPTtoHtml(String filepath,String fileName) throws IOException, TransformerException{ 
+		public static HashMap<String, Object> doPPTtoHtml(String filepath,String fileName) throws IOException, TransformerException{ 
 	    	HashMap<String, Object> hs = new HashMap<>(); //用来存放返回的一些东西,可扩展
 	    	String pptpath = filepath+ fileName;
 	    	String name = fileName.substring(0, fileName.lastIndexOf("."))+"ppt";//获取后缀名
