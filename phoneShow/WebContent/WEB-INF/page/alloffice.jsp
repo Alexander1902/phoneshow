@@ -80,13 +80,11 @@
 						</table>
 						<div id="page" class="page_div"></div>
 					</div>
-					<!--<div value="1 0"></div>  -->
-					
+					<!--<div value="1 0"></div>  -->	
 				 </div>
 		    </div>
         </div>
         
-
     <!-- 全局js -->
     <script src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.min.js"></script>

@@ -204,7 +204,7 @@ public class PageController {
 	@ResponseBody
 	public Map<String, Object> updateOffice(HttpServletRequest request) {
 		try {
-			request.setCharacterEncoding("UTF-8");
+			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
