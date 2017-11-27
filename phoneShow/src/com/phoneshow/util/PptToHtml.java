@@ -28,12 +28,12 @@ import org.apache.poi.hslf.usermodel.SlideShow;
 
 
 public class PptToHtml {
-	/*   final static String path = "D:/test/";
+	   final static String path = "D:/test/";
 	     final static String file = "vr.ppt";
 	 public static void main(String args[]) throws Exception {
 		 //doPPTtoHtml(path, file);
-		 ppt2003(path,file);
-	 }*/
+		 doPPTtoHtml(path,file);
+	 }
 	 /**
 	     * doPPTtoHtml(ppt2003转换为图片)
 	     * @param pptpath  ppt文件路径
@@ -121,7 +121,8 @@ public class PptToHtml {
       
        FileUtils.writeStringToFile(new File(filepath, htmlname), ppthtml, "utf-8");      
        System.out.println(name+"/??????????"+htmlname);
-       hs.put("htmlURL", name+"/"+htmlname);
+       System.out.println(name+"/"+htmlname);
+       hs.put("htmlURL",htmlname);
 	    }finally{ 
 	    try{ 
 	    if(orignalPPTFileInputStream!=null){ 
