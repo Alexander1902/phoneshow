@@ -33,6 +33,7 @@
 }
 .qry-group>div{
 	padding:0!important;
+	margin:5px 0;
 }
 
 .com-btn button{
@@ -43,7 +44,8 @@
 	border-radius:4px;
 	color:#fff;
 }
-.com-btn button:hover,#page>a:hover{
+.com-btn button:hover,#page>a:hover,
+.table>tbody td>button:hover{
 	border:1px solid #3E4B7D;
 	background:#fff;
 	color:#3E4B7D;
@@ -68,21 +70,28 @@
 	text-decoration:underline;
 	font-weight:bold;
 }
+.table>tbody td>button{
+	padding:6px;
+	color: #fff;
+	font-size: 13px;
+	border:none;
+	border:1px solid #3E4B7D;
+	background:#3E4B7D;
+	border-radius:4px;
+}
 /*
  * 页数按钮样式
  */
 #page{
 	text-align:center;
-	margin-top:50px;
 }
 #page>a{
 	min-width: 30px;
 	height: 28px;
 	text-align: center;
-	margin: 0 4px;
+	margin: 5px 4px;
 	cursor: pointer;
 	line-height: 28px;
-	color: #fff;
 	font-size: 13px;
 	display: inline-block;
 	background:#3E4B7D;

@@ -78,9 +78,10 @@
 								<td>操作</td>
 							<tbody id="officeTable"></tbody>
 						</table>
+						<div id="page" class="page_div"></div>
 					</div>
-					<div value="1 0"></div>
-					<div id="page" class="page_div"></div>
+					<!--<div value="1 0"></div>  -->
+					
 				 </div>
 		    </div>
         </div>

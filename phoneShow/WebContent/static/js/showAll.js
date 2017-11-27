@@ -179,6 +179,7 @@ function date(){
 		language:  'zh-CN',
 		format:"yyyy-mm-dd",    //格式化日期
         weekStart: 1,
+        minView: "month", //选择日期后，不会再跳转去选择时分秒
         todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
@@ -195,6 +196,7 @@ function date(){
 		format:"yyyy-mm-dd",    //格式化日期
         weekStart: 1,
         todayBtn:  1,
+        minView: "month", //选择日期后，不会再跳转去选择时分秒
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,

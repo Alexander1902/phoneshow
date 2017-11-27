@@ -26,6 +26,7 @@ img { border: 0; max-width: 100%; }
 }
 #content-main{
 	padding:20px;
+	overflow:auto;
 }
 .page-title{
 	margin:0;
@@ -69,13 +70,12 @@ img { border: 0; max-width: 100%; }
  } */
  .content{
     width:95%;
-    height:90%;
-    margin:0 auto;
+    margin:8% auto;
     border:3px dashed #8A6F91;
-    padding:20px;
+    padding:5%;;
  }
 .upload .send{
-   margin-right:10%;
+    text-align:left;
  }
  .upload{
    width:90%;
@@ -85,8 +85,12 @@ img { border: 0; max-width: 100%; }
     width:80%;
     margin-bottom:30px;
   }
-  .right-box,.left-box{
-     height:40%;
+  .top-box{
+    height:0px;
+    padding-bottom:100%;
+  }
+  .left-box,.right-box{
+    padding:10px 0;
   }
  .right-box>span{
      display:inline-block;
@@ -111,12 +115,5 @@ img { border: 0; max-width: 100%; }
      background:#88777E;
      height:135px;
   }
-  .bottom-box{
-    clear:both;
-    height:60%;
-    text-align:center;
-  }
-  .bottom-box>img{
-    height:100%;
-  }
+
   

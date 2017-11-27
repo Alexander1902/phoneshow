@@ -36,33 +36,29 @@
             <div class="row J_mainContent" id="content-main">
 				<!-- <h1 class="page-title">文件上传</h1> -->
 				<div class="content clearfix">
-				    <!-- 左侧表单 -->
-				    <div class="left-box col-sm-6">
-				        <h3>点击下方上传文件</h3>
-					    <form class="upload" action="${pageContext.request.contextPath }/upload/upload.do"
-							method="post" enctype="multipart/form-data">
-						<!-- 	<textarea rows="2" cols="4" name="title"></textarea> -->
-							<input type="text" value="" name="title" class="send-title" placeholder="请输入公告标题">
-							<input id="up_img" name="upload" type="file"> 
-							<div class="send com-btn">
-						        <button id="submit" onclick="return uplaod()">提交</button>
-						   </div>
-							<!-- <input
-								type="submit" value="提交" onclick="return uplaod()"> -->
-						</form>
+					    <!-- 左侧表单 -->
+					    <div class="left-box col-sm-6">
+					        <h3>点击下方上传文件</h3>
+						    <form class="upload" action="${pageContext.request.contextPath }/upload/upload.do"
+								method="post" enctype="multipart/form-data">
+							<!-- 	<textarea rows="2" cols="4" name="title"></textarea> -->
+								<input type="text" value="" name="title" class="send-title" placeholder="请输入公告标题">
+								<input id="up_img" name="upload" type="file"> 
+								<div class="send com-btn">
+							        <button id="submit" onclick="return uplaod()">提交</button>
+							   </div>
+								<!-- <input
+									type="submit" value="提交" onclick="return uplaod()"> -->
+							</form>
+						</div>
+						<!-- 右侧可上传的图标 -->
+						<div class="right-box col-sm-6">
+						   <h3>可上传的文件类型</h3>
+						   <span class="circle1">Word</span>
+						   <span class="circle2">Excel</span>
+						   <span class="circle3">ppt</span>
+						</div>
 					</div>
-					<!-- 右侧可上传的图标 -->
-					<div class="right-box col-sm-6">
-					   <h3>可上传的文件类型</h3>
-					   <span class="circle1">Word</span>
-					   <span class="circle2">Excel</span>
-					   <span class="circle3">ppt</span>
-					</div>
-					<div class="bottom-box">
-						<img src="${pageContext.request.contextPath }/static/css/timg.jpg">
-					</div>
-				</div>
-				
 			</body>
 				
 		    </div>
