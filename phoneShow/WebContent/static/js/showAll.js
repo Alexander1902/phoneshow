@@ -103,7 +103,7 @@ function search(num){
 	}
 
 //	alert(titleencode);
-	layer.msg(titleencode);
+//	layer.msg(titleencode);
 	console.log("type:"+type+",title:"+title+",start:"+start+",end:"+end);
 	var cond={"pageno":1,"pagesize":pageSize,"type":type,"title":titleencode,"start":start,"end":end};
 	initData(cond);
@@ -131,7 +131,7 @@ function showHtml(data){
 			html+="<td id='"+data[o].id+"'><svg class='icon' style='width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='8549'><path d='M625.664 132.608V199.68h309.76v43.008h-309.76V312.32h309.76v43.008h-309.76v68.608h309.76v43.008h-309.76v68.608h309.76v43.008h-309.76v68.608h309.76v43.008h-309.76v68.096h309.76v43.008h-309.76v89.088H1024v-757.76h-398.336z' fill='#333333' p-id='8550'></path><path d='M0 914.944L577.024 1024V0L0 109.056m417.792 401.92c-21.504 17.92-52.224 27.136-92.16 27.136h-76.8V670.72h-76.8V302.08h158.208c36.352 0 65.536 9.728 87.04 28.672 21.504 18.944 32.768 48.64 32.768 88.064 0 43.52-10.752 74.24-32.256 92.16zM358.912 378.368c-9.728-8.192-23.552-12.288-40.96-12.288H248.832v108.544h69.632c17.408 0 31.232-4.608 40.96-13.312 9.728-8.704 14.848-23.04 14.848-41.984-0.512-18.944-5.632-32.768-15.36-40.96z' fill='#C35132' p-id='8551'></path></svg>  "+data[o].title;
 		}
 		html+="</td>";
-		html+="<td>"+data[o].type;
+		html+="<td>"+getType(data[o].type);
 		html+="</td>";
 		if(data[o].type==3){//3是公告
 		html+="<td><a href='/phoneShow/showNotice.jsp?id="+data[o].id+"' target='_blank'>查看</a>";
@@ -207,4 +207,17 @@ function date(){
         var endtTime =$('#end').val();  
         $('#start').datetimepicker('setEndDate',endtTime);  
     });
+}
+function getType(type){
+	if(type==1){
+		return "Word";
+	}
+	else if(type==2){
+		return "Excel";
+	}
+	else if(type==3){
+		return "公告";
+	}else if(type==4){
+		return "PPT";
+	}
 }

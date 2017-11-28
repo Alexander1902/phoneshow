@@ -78,7 +78,7 @@
 								<td>操作</td>
 							<tbody id="officeTable"></tbody>
 						</table>
-						<div id="page" class="page_div"></div>
+						选择每页数量：<select id="pagesize" onchange="pageSizeChonge()"><option value="10">10</option><option value="5">5</option><option value="20">20</option></select><div id="page" class="page_div"></div>
 					</div>
 					<!--<div value="1 0"></div>  -->	
 				 </div>
