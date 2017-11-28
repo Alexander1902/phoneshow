@@ -24,6 +24,7 @@
 </head>
 <body>
 <body class="fixed-sidebar full-height-layout gray-bg">
+	<a href="${pageContext.request.contextPath }/page/alloffice.do">管理员登录</a>
     <div id="wrapper">
          
             <div class="row J_mainContent" id="content-main">
