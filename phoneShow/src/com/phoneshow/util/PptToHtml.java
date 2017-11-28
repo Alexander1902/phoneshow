@@ -28,12 +28,12 @@ import org.apache.poi.hslf.usermodel.SlideShow;
 
 
 public class PptToHtml {
-	   final static String path = "D:/test/";
+	/*   final static String path = "D:/test/";
 	     final static String file = "vr.ppt";
 	 public static void main(String args[]) throws Exception {
 		 //doPPTtoHtml(path, file);
 		 doPPTtoHtml(path,file);
-	 }
+	 }*/
 	 /**
 	     * doPPTtoHtml(ppt2003转换为图片)
 	     * @param pptpath  ppt文件路径
@@ -45,10 +45,11 @@ public class PptToHtml {
 	    
 		@SuppressWarnings("unused")
 		public static HashMap<String, Object> doPPTtoHtml(String filepath,String fileName) throws IOException, TransformerException{ 
-	    	HashMap<String, Object> hs = new HashMap<>(); //用来存放返回的一些东西,可扩展
+	    	System.out.println(filepath+">>>>>>>>>>>>>>>>>>>>>>>>>>"+fileName);
+			HashMap<String, Object> hs = new HashMap<>(); //用来存放返回的一些东西,可扩展
 	    	String pptpath = filepath+ fileName;
 	    	String name = fileName.substring(0, fileName.lastIndexOf("."))+"ppt";//获取后缀名
-	    	String imgpath =filepath+"/images";   //图片路径是否存在
+	    	String imgpath =filepath+"images";   //图片路径是否存在
 	    	File imgp = new File(imgpath); //创建文件夹
 	    	if(!imgp.exists()){//图片目录不存在则创建
 	    		imgp.mkdirs();
@@ -66,7 +67,7 @@ public class PptToHtml {
 	    String  imghtml=""; 
 	    
 	    try{ 
-	    FileOutputStream out =null; 
+	    
 	    orignalPPTFileInputStream=new FileInputStream(pptpath);
 	    oneSlideShow=new SlideShow(orignalPPTFileInputStream);
 
@@ -81,12 +82,14 @@ public class PptToHtml {
 	    for(int textRunsArrayIndex=0;textRunsArrayIndex<textRunsArray.length; textRunsArrayIndex++){ 
 	    RichTextRun[] pptRichTextRunsArray = textRunsArray[textRunsArrayIndex].getRichTextRuns(); 
 	    for(int pptRichTextRunsArrayIndex=0;pptRichTextRunsArrayIndex < pptRichTextRunsArray.length;pptRichTextRunsArrayIndex++){	
-	    pptRichTextRunsArray[pptRichTextRunsArrayIndex].setFontIndex(1); 
+	    System.out.println(pptRichTextRunsArray[pptRichTextRunsArrayIndex]);
+	    	pptRichTextRunsArray[pptRichTextRunsArrayIndex].setFontIndex(1); 
 	    pptRichTextRunsArray[pptRichTextRunsArrayIndex].setFontName("宋体"); 
 	/*    但如果 PPT 文件在 WPS 中保存过，则 pptRichTextRunsArray[pptRichTextRunsArrayIndex].getFontSize()的值可能为0或者26040。 因此首先识别当前文本框内的字体尺寸是否为0或者大于26040，则 设置默认的字体尺寸。*/ 
 	    int currentFontSize = pptRichTextRunsArray[pptRichTextRunsArrayIndex].getFontSize(); 
 	    if((currentFontSize<=0)||(currentFontSize>=26040)){ 
 	    pptRichTextRunsArray[pptRichTextRunsArrayIndex].setFontSize(30); 
+	    
 	    }	
 	    }
 	    }
@@ -97,25 +100,13 @@ public class PptToHtml {
 
 	    oneGraphics2D.fill(new Rectangle2D.Float(0,0,onePPTPageSize.width, onePPTPageSize.height));
 	    pptPageSlideArray[pptPageSlideIndex].draw(oneGraphics2D);
-
 	    orignalPPTFileOutputStream=new FileOutputStream(imgpath + "/" + filename  + "_"+ pptPageSlideIndex + "."+imgformat);
-	    
 	    ImageIO.write(oneBufferedImage, imgformat, orignalPPTFileOutputStream); 
 	    String imgs=filename  + "_"+ pptPageSlideIndex + "."+imgformat;  
-	    out= new FileOutputStream(imgs);
-	    System.out.println(imgs);
+	    System.out.println("images:"+imgs);
 	    imghtml+="<img src=\'"+"images\\"+imgs+"\' style=\'width:800px;height:600px;vertical-align:text-bottom;\'><br><br><br><br>";  
 	    }
-	     
-	    DOMSource domSource = new DOMSource();  
-        StreamResult streamResult = new StreamResult(out);  
-        TransformerFactory tf = TransformerFactory.newInstance();  
-        Transformer serializer = tf.newTransformer();  
-        serializer.setOutputProperty(OutputKeys.ENCODING, "utf-8");  
-        serializer.setOutputProperty(OutputKeys.INDENT, "yes");  
-        serializer.setOutputProperty(OutputKeys.METHOD, "html");  
-        serializer.transform(domSource, streamResult);  
-        out.close();   
+
        System.out.println("拼接成一个网页。。。。。");
        String ppthtml="<html><head><META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"></head><body style=\"text-align:center;\">"+imghtml+"</body></html>";  
       
@@ -216,8 +207,6 @@ public class PptToHtml {
         }     
         return hs;
     }     
-    
-   
 	    //文件检查,如果存在则返回文件名
 	    private static String preReadCheck(String path) throws FileNotFoundException {
 	    File file = new File(path);
