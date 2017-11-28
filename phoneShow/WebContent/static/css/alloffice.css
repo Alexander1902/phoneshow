@@ -4,7 +4,7 @@
   */
 
 .page_div {
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 20px;
 	font-size: 15px;
 	font-family: "microsoft yahei";
@@ -51,9 +51,15 @@
 	color:#3E4B7D;
 }
 .show-table{
-	margin-top:20px;
+	margin-top:10px;
 	height:390px;
+} 
+#officeTable tr{
+	height:35px!important;
 }
+ .table > tbody > tr > td{
+    padding:0!important;
+ }
 .table>thead{
 	background:#3E4B7D;
 	color:#fff;
