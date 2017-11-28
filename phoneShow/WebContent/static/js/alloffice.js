@@ -22,6 +22,7 @@ function relaod(){
 	$("#pagesize").val("10");
 	pageSize=10;
 	initData();
+	date();
 }
 //翻页
 function changPage(pageno,allpage,size,jsondata){
@@ -238,7 +239,7 @@ function date(){
         showMeridian: 1
     }).on('changeDate',function(e){  
         var endtTime =$('#end').val();  
-        $('#start').datetimepicker('setStartDate',endtTime);  
+        $('#start').datetimepicker('setEndDate',endtTime);  
     });
 }
 /*
