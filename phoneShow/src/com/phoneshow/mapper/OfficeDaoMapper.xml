@@ -3,8 +3,8 @@
 <mapper namespace="com.phoneshow.dao.OfficeDao">
 	<insert id="insertOffice" parameterType="java.util.Map">
 		INSERT INTO office
-		(`id`,`title`,`type`,`url`,`content`,`date`)
-		 VALUE(#{id},#{title},#{type},#{url},#{content},#{date})
+		(`id`,`title`,`type`,`url`,`content`,`date`,`server_path`,`original_name`)
+		 VALUE(#{id},#{title},#{type},#{url},#{content},#{date},#{server_path},#{original_name})
 	</insert>
 	
 	<sql id="queryOfficeWhere">

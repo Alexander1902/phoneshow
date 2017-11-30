@@ -1,39 +1,34 @@
 package com.phoneshow.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
-import org.apache.poi.ss.usermodel.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.util.MyDateUtil;
 import com.phoneshow.util.PageUtill;
 import com.phoneshow.util.WebUtill;
-import com.phoneshow.util.WordToHtml;
 
 @Controller
 @RequestMapping("/page")
@@ -228,4 +223,74 @@ public class PageController {
 		}
 		return map;
 	}
+	 @RequestMapping("/download")
+	    public void download( HttpServletRequest request,
+	            HttpServletResponse response) throws Exception {
+	        logger.info("进入download");
+	        String realPath = request.getServletContext().getRealPath("/");
+	        String id = WebUtill.getParameter("id", request);
+	        logger.info("id"+id);
+	        Map<String, Object> hs = officeConverterService.getOfficeById(id);
+	        if(hs == null){
+	        	throw new Exception("id 输入错误");
+	        }
+	        String fileName =(String) hs.get("original_name");
+	        if(fileName == "" || fileName == null){
+	        	throw new Exception("源文件不存在！！");
+	        }
+	        logger.info("fileName"+fileName);
+	        String path =realPath+hs.get("server_path");
+	        logger.info("path"+path);
+	        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型  
+	        response.setContentType("multipart/form-data");
+	        //2.设置文件头
+	        String userAgent = request.getHeader("User-Agent");
+	        if (StringUtils.isBlank(userAgent)) {
+	            fileName = URLEncoder.encode(fileName, "UTF-8");
+	        } else {
+	            if (userAgent.indexOf("MSIE") != -1) {
+	                // IE使用URLEncoder
+	                fileName = URLEncoder.encode(fileName, "UTF-8");
+	            } else {
+	                // FireFox使用ISO-8859-1
+	                fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+	            }
+	        }
+	        File file = new File(path);
+	        response.reset();
+	        response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
+	        response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+	        response.setHeader("Pragma", "public");
+	        response.addHeader("Content-Length", "" + file.length());
+	        response.setDateHeader("Expires", (System.currentTimeMillis() + 1000));
+
+	        OutputStream out = null;
+
+
+	        InputStream inputStream = null;
+	        try {
+	            inputStream = new FileInputStream(file);
+
+
+	            out = response.getOutputStream();
+
+
+	            byte[] buffer = new byte[1024];
+	            int count = 0;
+	            while ((count = inputStream.read(buffer)) != -1) {
+	                out.write(buffer, 0, count);
+	            }
+
+	          
+	            out.close();
+	            out.flush();
+
+
+	        } catch (IOException e) {
+	            logger.error("文件下载异常:{}", e);
+	        } finally {
+	            IOUtils.closeQuietly(inputStream);
+	        }
+	    }
+
 }

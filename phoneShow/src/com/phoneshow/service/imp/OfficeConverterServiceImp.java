@@ -29,7 +29,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 	 * @see
 	 */
 	@Override
-	public int officeConverter(String filepath, String fileName, String expandname, String title) {
+	public int officeConverter(String filepath, String fileName, String expandname, String title,String original_name) {
 		if (!filepath.endsWith(File.separator)) {
 			filepath = filepath + File.separator;
 		}
@@ -39,6 +39,8 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		String id = randomUUID.toString();
 		log.info("srvice" + expandname);
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("original_name", original_name);
+		map.put("server_path","office\\"+fileName);
 		System.out.println(fileName+"fileName????");
 		try {
 			map.put("id", id);
@@ -58,17 +60,17 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 				map.put("url", url);
 				officeDao.insertOffice(map);
 				Map<String, Object> hMap = new HashMap<>();
-
 				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
 				for (Map<String, String> map2 : selectOffice) {
 					System.out.println(map2.get("url") + "测试");
 				}
 			}else if (expandname.equals("ppt") || expandname.equals("PPT")) {
-				
+				log.info("filepath:"+filepath+"fileName:"+fileName);
 				HashMap<String, Object> hs = PptToHtml.doPPTtoHtml(filepath, fileName);
 				map.put("type", "4");
 				if(hs != null){
 					map.put("url",hs.get("htmlURL") );
+					
 					System.out.println("HTML的真实路径是："+hs.get("htmlURL"));
 				}
 				officeDao.insertOffice(map);

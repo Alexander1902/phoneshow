@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 public interface OfficeConverterService {
-	public int officeConverter(String filepath,String fileName,String expandname,String title);
+	public int officeConverter(String filepath,String fileName,String expandname,String title,String original_name);
 	public List<Map<String, String>> getOffice(Map<String, Object> map);
 	public Integer getCount(Map<String, Object> map);
 	public Integer deleteById(String id,String path);

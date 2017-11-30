@@ -69,6 +69,7 @@
 								<td>类型</td>
 								<td>浏览</td>
 								<td>时间</td>
+								<td>操作</td>
 							<tbody id="officeTable"></tbody>
 						</table>
 						<div id="page" class="page_div"></div>

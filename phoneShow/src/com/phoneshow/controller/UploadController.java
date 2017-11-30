@@ -46,6 +46,8 @@ public class UploadController {
 		if(!officefile.exists()){
 			officefile.mkdirs();
 		}
+		String original_name = upload.getOriginalFilename();
+		logger.info("original_name:"+original_name);
 		String expandname = upload.getOriginalFilename().substring(upload.getOriginalFilename().indexOf('.'));
 		logger.info(expandname+"À©Õ¹Ãû");
 		String fileName = MyDateUtil.DateAndTime()+expandname;
@@ -74,7 +76,7 @@ public class UploadController {
 			
 		}
 		try {
-			int officeConverter = officeConverterService.officeConverter(realPath+File.separator, fileName,expandname,title);
+			int officeConverter = officeConverterService.officeConverter(realPath+File.separator, fileName,expandname,title,original_name);
 			if (officeConverter==1) {
 				request.setAttribute("stute", "1");
 			}else{
