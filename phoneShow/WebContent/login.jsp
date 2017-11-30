@@ -13,7 +13,10 @@
 <body>
 用户名：<input type="text" id="username">
 密码：<input type="password" id="password"><button id="login">登录</button>
-
+<a href="${pageContext.request.contextPath }/page/alloffice.do">
+                      <i class="fa fa-table"></i>
+                     <span class="nav-label">文档管理</span>
+                 </a>
 <!-- 全局js -->
     <script src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.min.js"></script>
@@ -25,8 +28,8 @@
 		$("#login").click(function(){
 			alert("测试");
 			var _param={
-					url: "/phoneShow/page/getoffice.do",
-					type: "GET",
+					url: "/phoneShow/page/",
+					type: "POST",
 					datatype: 'json',
 					data:json,
 					scriptCharset:'UTF-8',

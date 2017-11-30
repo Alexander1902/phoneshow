@@ -24,7 +24,9 @@
 </head>
 <body>
 <body class="fixed-sidebar full-height-layout gray-bg">
-	<a href="${pageContext.request.contextPath }/login.jsp">管理员登录</a>
+	<%-- <a href="${pageContext.request.contextPath }/login.jsp">管理员登录</a> --%>
+	 <div class="admin"><i class="fa fa-home"></i>
+	  <a  href="${pageContext.request.contextPath }/login.jsp">管理员登录</a></div>
     <div id="wrapper">
          
             <div class="row J_mainContent" id="content-main">
