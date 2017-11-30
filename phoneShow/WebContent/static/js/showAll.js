@@ -142,7 +142,11 @@ function showHtml(data){
 		html+="<td>"+data[o].date;
 		html+="</td>";
 		html+="</td>";
-		html+="<td><button onclick=\"window.open('/phoneShow/page/download.do?id="+data[o].id+"')\">下载</button>";
+		if(data[o].type !=3){
+			html+="<td><button onclick=\"window.open('/phoneShow/page/download.do?id="+data[o].id+"')\">下载</button>";
+			html+="</td>";
+		}
+		html+="<td>";
 		html+="</td>";
 		html+="</tr>";
 		$("#officeTable").append(html);
