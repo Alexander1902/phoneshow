@@ -4,24 +4,32 @@
 	<!--新增用户  -->
 	<insert id="insertUser" parameterType="java.util.Map">
 		INSERT INTO user
-		(`id`,`username`,`password`)
-		 VALUE(#{id},#{username},#{password})
+		(`id`,`username`,`password`,`flags`)
+		 VALUE(#{id},#{username},#{password},#{flag})
 	</insert>
 	<!--删除用户  -->
 	<delete id="deleteById" parameterType="java.lang.String">
 		DELETE FROM user WHERE id=#{id}
 	</delete>
 	<!--查询用户  -->
-	<select id="getUserListById"  resultType="java.util.Map">
+	<select id="selectUser"  resultType="java.util.Map">
 		SELECT * FROM user
 	</select>
 	<!--根据id更改密码  -->
-	<update id="updateOffice" parameterType="java.util.Map">
+	<update id="updatePassword" parameterType="java.util.Map">
 		UPDATE user u SET u.password=#{password} WHERE u.id=#{id}
 	</update>
 	<!--登陆验证  -->
-	<select id="getUserLogin"  resultType="java.util.Map">
-		SELECT * FROM user WHERE username=#{username} AND password=#{password}
+	<select id="checkLogin"  resultType="java.util.Map">
+		SELECT * FROM user
+		<where>
+			<if test="username!=null">
+				username=#{username}
+			</if>
+			<if test="password!=null">
+				and password=#{password}
+			</if>
+		</where>
 	</select>
 	
 </mapper>

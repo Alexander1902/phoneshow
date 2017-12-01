@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.phoneshow.dao.UserDao;
+import com.phoneshow.entity.User;
 import com.phoneshow.service.UserService;
 
 @Service
@@ -76,6 +77,12 @@ public class UserServiceImp implements UserService {
 		}else {
 			log.info("ÐÞ¸ÄÊ§°Ü£¡"+password);
 		}
+	}
+
+	@Override
+	public User checkLogin(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

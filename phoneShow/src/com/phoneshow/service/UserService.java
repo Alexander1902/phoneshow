@@ -3,6 +3,8 @@ package com.phoneshow.service;
 import java.util.List;
 import java.util.Map;
 
+import com.phoneshow.entity.User;
+
 
 public interface UserService {
 	/**
@@ -32,6 +34,6 @@ public interface UserService {
 	 * 用户登录验证
 	 * @param
 	 */
-	//public void checkLogin(String usename,String password);
+	User checkLogin(User user);
 	
 }
