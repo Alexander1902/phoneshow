@@ -14,6 +14,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +34,8 @@ import com.phoneshow.util.MyDateUtil;
 import com.phoneshow.util.PageUtill;
 import com.phoneshow.util.WebUtill;
 
+import sun.security.action.PutAllAction;
+
 @Controller
 @RequestMapping("/page")
 public class PageController {
@@ -51,7 +54,7 @@ public class PageController {
 	 */
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public List<Map<String, Object>> login(HttpServletRequest request){
+	public Map<String, Object> login(HttpServletRequest request){
 		//´ÓÊý¾Ý¿âÖÐ²éÑ¯
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -67,16 +70,21 @@ public class PageController {
 			e1.printStackTrace();
 		}
 		Map<String, Object> map = new HashMap<>();
+		map.put("username", username);
+		map.put("password", password);
 		List<Map<String, Object>> userList = userService.checkLogin(map);
+		Map<String, Object> result = new HashMap<>();
 		if(userList.size()>=0){
-			map.put("stute", 1);
+			HttpSession session = request.getSession();
+			session.setAttribute("USER", userList.get(0));
+			result.put("stute", 1);
 		} else {
-			map.put("stute", 2);
-			map.put("erorr", "µÇÂ½Ê§°Ü");
+			result.put("stute", 2);
+			result.put("erorr", "µÇÂ½Ê§°Ü");
 		}
 		logger.info("username:" + username);
 		
-		return userList;
+		return result;
 		
 	}
 	

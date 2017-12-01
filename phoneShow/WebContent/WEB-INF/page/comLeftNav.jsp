@@ -37,13 +37,15 @@
                      <span class="nav-label">信息发布</span>
                  </a>
              </li>
-             
+            
+             <c:if test="${USER.flag == 2 }">
              <li>
                  <a href="${pageContext.request.contextPath }/page/user.do">
                       <i class="fa fa-envelope"></i>
                       <span class="nav-label">用户管理</span>
                  </a>
              </li>
+             </c:if>
          </ul>
      </div>
  </nav>

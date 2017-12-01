@@ -30,6 +30,7 @@ function getAllUser(){
 }
 
 function showAllUser(data){
+	$("#userTable").html("");
 	for(var i=0;i<data.length;i++){
 		var html="<tr>";
 		html+="<td>"+(i+1);
@@ -62,6 +63,7 @@ function deleteById(name,id){//删除后调用getAllUser()
 					layer.closeAll('loading');
 					if(data.stute==1){
 						layer.msg("删除成功！");
+						 
 						getAllUser();
 					}else{
 						layer.msg("删除失败！");
