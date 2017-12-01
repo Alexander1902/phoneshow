@@ -47,7 +47,18 @@ public class PageController {
 	@Autowired
 	private UserService userService;
 	
-	
+	/**
+	 * ÍË³ö
+	 * 
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("USER", "");
+			return "login";
+	}
 	/**
 	 * µÇÂ¼
 	 * @param
@@ -179,8 +190,14 @@ public class PageController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{page}.do")
-	public String page(@PathVariable String page) {
+	public String page(@PathVariable String page,HttpServletRequest request) {
 		logger.info("Ìøµ½" + page + ".jsp");
+		HttpSession session = request.getSession();
+		Object attribute = session.getAttribute("USER");
+		
+		if(attribute==null){
+			return "login";
+		}
 		return page;
 	}
 

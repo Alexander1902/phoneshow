@@ -46,6 +46,12 @@
                  </a>
              </li>
              </c:if>
+             <li>
+                 <a href="${pageContext.request.contextPath }/page/logout.do">
+                      <i class="fa fa-envelope"></i>
+                      <span class="nav-label">退出</span>
+                 </a>
+             </li>
          </ul>
      </div>
  </nav>
