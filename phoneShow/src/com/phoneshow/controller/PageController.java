@@ -20,11 +20,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.phoneshow.entity.User;
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.service.UserService;
 import com.phoneshow.util.MyDateUtil;
@@ -41,6 +43,24 @@ public class PageController {
 	private OfficeConverterService officeConverterService;
 	@Autowired
 	private UserService userService;
+	
+	
+	/**
+	 * 登录
+	 * produces:用于解决返回json中文乱码问题
+	 */
+	@RequestMapping("/login.do")
+	@ResponseBody
+	public String login(User user,HttpServletRequest request){
+		//从数据库中查询
+		User u = userService.checkLogin(user);
+		//查询到user对象
+		if(u!=null){
+			return "登陆成功";
+		}else{
+			return "用户名或者密码错误";
+		}
+	}
 	
 	/**
 	 * 查询用户信息
@@ -60,7 +80,7 @@ public class PageController {
 	 */
 	@RequestMapping("/delUserInfo.do")
 	@ResponseBody
-	public int deleteUserById(HttpServletRequest request){
+	public Map<String, Object> deleteUserById(HttpServletRequest request){
 		String id = WebUtill.getParameter("id", request);
 		Map<String, Object> map = new HashMap<>();
 		if (id == null || id == "") {
@@ -68,7 +88,13 @@ public class PageController {
 			map.put("erorr", "删除用户失败");
 		}
 		Integer deleteById = userService.deleteById(id);
-		return deleteById;
+		if (deleteById == 1) {
+			map.put("stute", 1);
+		} else {
+			map.put("stute", 2);
+			map.put("erorr", "删除失败");
+		}
+		return map;
 	}
 	
 	/**
@@ -95,6 +121,29 @@ public class PageController {
 		logger.info("username:" + username);
 		Map<String, Object> resultmap = userService.insertUser(username, password);
 		return resultmap;
+	}
+	
+	/**
+	 * 根据id修改用户密码信息
+	 */
+	@RequestMapping("/update.do")
+	@ResponseBody
+	public Map<String, Object> updatePwdById(HttpServletRequest request) {
+		
+		String id = WebUtill.getParameter("id", request);
+		String password = WebUtill.getParameter("password", request);
+		
+		Map<String,Object> map=new HashMap<>();
+		try {
+			userService.updatePassword(id, password);;
+			map.put("stute", 1);
+			map.put("id", id);
+			map.put("password", password);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("stute", 2);
+		}
+		return map;
 	}
 
 	/**

@@ -68,7 +68,7 @@ public class UserServiceImp implements UserService {
 	}
 	//根据id修改用户密码
 	@Override
-	public void updatePassword(String password) {
+	public void updatePassword(String id,String password) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("password", password);
 		int updatePassword = userDao.updatePassword(map);

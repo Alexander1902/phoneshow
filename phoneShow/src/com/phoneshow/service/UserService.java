@@ -29,7 +29,7 @@ public interface UserService {
 	 * 根据id修改用户密码
 	 * @param
 	 */
-	public void updatePassword(String password);
+	public void updatePassword(String id,String password);
 	/**
 	 * 用户登录验证
 	 * @param
