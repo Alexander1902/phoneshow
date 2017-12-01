@@ -15,5 +15,5 @@ public interface UserDao {
 	//根据id修改用户密码
 	public int updatePassword(Map<String, Object> map);
 	//验证登陆
-	public void checkLogin(User user);
+	public User checkLogin(User user);
 }

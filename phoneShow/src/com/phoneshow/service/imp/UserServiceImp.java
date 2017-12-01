@@ -82,7 +82,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public User checkLogin(User user) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.checkLogin(user);
 	}
 	
 }

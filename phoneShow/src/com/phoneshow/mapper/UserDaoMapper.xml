@@ -4,7 +4,7 @@
 	<!--新增用户  -->
 	<insert id="insertUser" parameterType="java.util.Map">
 		INSERT INTO user
-		(`id`,`username`,`password`,`flags`)
+		(`id`,`username`,`password`,`flag`)
 		 VALUE(#{id},#{username},#{password},#{flag})
 	</insert>
 	<!--删除用户  -->
