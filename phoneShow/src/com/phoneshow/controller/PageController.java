@@ -126,7 +126,7 @@ public class PageController {
 	/**
 	 * 根据id修改用户密码信息
 	 */
-	@RequestMapping("/update.do")
+	@RequestMapping("/updatePwd.do")
 	@ResponseBody
 	public Map<String, Object> updatePwdById(HttpServletRequest request) {
 		
