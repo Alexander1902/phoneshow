@@ -51,7 +51,7 @@ public class PageController {
 	 */
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public Map<String, Object> login(HttpServletRequest request){
+	public List<Map<String, Object>> login(HttpServletRequest request){
 		//从数据库中查询
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -66,10 +66,17 @@ public class PageController {
 		} catch (UnsupportedEncodingException e1) {
 			e1.printStackTrace();
 		}
+		Map<String, Object> map = new HashMap<>();
+		List<Map<String, Object>> userList = userService.checkLogin(map);
+		if(userList.size()>=0){
+			map.put("stute", 1);
+		} else {
+			map.put("stute", 2);
+			map.put("erorr", "登陆失败");
+		}
 		logger.info("username:" + username);
-		Map<String, Object> resultmap = userService.checkLogin(username, password);
 		
-		return resultmap;
+		return userList;
 		
 	}
 	

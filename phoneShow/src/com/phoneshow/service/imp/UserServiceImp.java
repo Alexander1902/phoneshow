@@ -82,9 +82,9 @@ public class UserServiceImp implements UserService {
 
 	
 	@Override
-	public Map<String, Object> checkLogin(String username, String password) {
+	public List<Map<String, Object>> checkLogin(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return userDao.checkLogin(username, password);
+		return userDao.checkLogin(map);
 	}
 	
 }
