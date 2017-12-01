@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.phoneshow.service.OfficeConverterService;
+import com.phoneshow.service.UserService;
 import com.phoneshow.util.MyDateUtil;
 import com.phoneshow.util.PageUtill;
 import com.phoneshow.util.WebUtill;
@@ -38,6 +39,63 @@ public class PageController {
 
 	@Autowired
 	private OfficeConverterService officeConverterService;
+	@Autowired
+	private UserService userService;
+	
+	/**
+	 * 查询用户信息
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getUserInfo.do")
+	@ResponseBody
+	public List<Map<String, Object>> getUserInfoList(HttpServletRequest request){
+		List<Map<String, Object>> userList = userService.getUserInfo();
+		return userList;
+	}
+	/**
+	 * 删除用户信息
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/delUserInfo.do")
+	@ResponseBody
+	public int deleteUserById(HttpServletRequest request){
+		String id = WebUtill.getParameter("id", request);
+		Map<String, Object> map = new HashMap<>();
+		if (id == null || id == "") {
+			map.put("stute", 2);
+			map.put("erorr", "删除用户失败");
+		}
+		Integer deleteById = userService.deleteById(id);
+		return deleteById;
+	}
+	
+	/**
+	 * 新增用户信息
+	 * @param
+	 */
+	@RequestMapping(value = "/userInfo.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> insertUserInfo(HttpServletRequest request) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		
+		String username = WebUtill.getParameter("username", request);
+		String password = WebUtill.getParameter("password", request);
+		try {
+			username=URLDecoder.decode(username, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		logger.info("username:" + username);
+		Map<String, Object> resultmap = userService.insertUser(username, password);
+		return resultmap;
+	}
 
 	/**
 	 * 跳页
