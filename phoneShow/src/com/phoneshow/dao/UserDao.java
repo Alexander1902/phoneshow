@@ -11,7 +11,7 @@ public interface UserDao {
 	//查询用户信息
 	public List<Map<String, Object>> selectUser();
 	//删除用户
-	public Map<String, Object> deleteById(String id);
+	public void deleteById(String id);
 	//根据id修改用户密码
 	public int updatePassword(Map<String, Object> map);
 	//验证登陆
