@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.phoneshow.dao.OfficeDao">
-	<!-- 写点文字试一试 -->
+<mapper namespace="com.phoneshow.dao.UserDao">
+	<!--新增用户  -->
+	<insert id="insertUser" parameterType="java.util.Map">
+		INSERT INTO user
+		(`id`,`username`,`password`)
+		 VALUE(#{id},#{username},#{password})
+	</insert>
+	<!--删除用户  -->
+	<delete id="deleteById" parameterType="java.lang.String">
+		DELETE FROM user WHERE id=#{id}
+	</delete>
+	<!--查询用户  -->
+	<select id="getUserListById"  resultType="java.util.Map">
+		SELECT * FROM user
+	</select>
+	<!--根据id更改密码  -->
+	<update id="updateOffice" parameterType="java.util.Map">
+		UPDATE user u SET u.password=#{password} WHERE u.id=#{id}
+	</update>
+	<!--登陆验证  -->
+	<select id="getUserLogin"  resultType="java.util.Map">
+		SELECT * FROM user WHERE username=#{username} AND password=#{password}
+	</select>
+	
 </mapper>
