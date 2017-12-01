@@ -141,13 +141,13 @@ function showHtml(data){
 		html+="</td>";
 		html+="<td>"+data[o].date;
 		html+="</td>";
-		html+="</td>";
 		if(data[o].type !=3){
 			html+="<td><button onclick=\"window.open('/phoneShow/page/download.do?id="+data[o].id+"')\">下载</button>";
 			html+="</td>";
+		}else{
+			html+="<td></td>";
 		}
-		html+="<td>";
-		html+="</td>";
+		
 		html+="</tr>";
 		$("#officeTable").append(html);
 	}

@@ -17,8 +17,7 @@
                          </span>
                      </a>
                  </div>
-                 <div class="logo-element">Logo
-                 </div>
+                 <div class="logo-element">Logo </div>
              </li>
              <li>
                  <a class="J_menuItem" href="${pageContext.request.contextPath }/page/show.do">
@@ -41,7 +40,7 @@
              <li>
                  <a href="${pageContext.request.contextPath }/page/user.do">
                       <i class="fa fa-envelope"></i>
-                     <span class="nav-label">用户管理</span>
+                      <span class="nav-label">用户管理</span>
                  </a>
              </li>
          </ul>

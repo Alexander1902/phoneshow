@@ -9,9 +9,9 @@
     <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/static/hadmin/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/static/hadmin/css/style.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/static/hadmin/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/alloffice.css" type="text/css">
 </head>
 <body>
 <body class="fixed-sidebar full-height-layout gray-bg">
@@ -25,7 +25,10 @@
                 </nav>
             </div>
             <div class="row J_mainContent" id="content-main">
-					<div class="show-table"><button onclick="addHtml()">添加用户</button>
+					<div class="show-table">
+					    <div class="add com-btn">
+					        <button onclick="addHtml()">添加用户</button>
+					     </div>
 						<table class="table table-hover">
 							<thead>
 								<td>编号</td>
@@ -47,6 +50,7 @@
     <script src="${pageContext.request.contextPath }/static/hadmin/js/metisMenu/jquery.metisMenu.js"></script>
     <script src="${pageContext.request.contextPath }/static/hadmin/js/slimscroll/jquery.slimscroll.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/hadmin/js/layer/layer.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/index.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/user.js"></script>
 </body>
 </html>

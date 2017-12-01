@@ -13,14 +13,19 @@
 	<![endif]-->
 
     <link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <%--   <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/static/hadmin/css/animate.css" rel="stylesheet">
+   <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
+     <%--  <link href="${pageContext.request.contextPath }/static/hadmin/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/static/hadmin/css/style.css" rel="stylesheet"> --%>
     <link href="${pageContext.request.contextPath }/static/hadmin/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/alloffice.css" type="text/css">
-
+    <style>
+    .row{margin:0;}
+    .admin{padding-left:20px;padding-top:10px;font-size:18px;}
+    .admin a{font-size:16px;}
+    #content-main{padding-top:10px}
+    </style>
 </head>
 <body>
 <body class="fixed-sidebar full-height-layout gray-bg">

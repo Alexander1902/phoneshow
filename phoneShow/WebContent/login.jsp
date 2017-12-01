@@ -5,18 +5,66 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/static/hadmin/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/static/hadmin/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
+    <style>
+    body{background:#f5f5f5}
+       .login-content{
+          text-align:center;
+          margin-top:100px;
+       }
+        .login-content>div{
+          margin-bottom:20px;
+        }
+       h1{
+          line-height:50px;
+          color:#3E4B7D;
+           margin-bottom:20px;
+       }
+       label{width:60px;text-align:right;font-size:18px;}
+       input{
+            width:250px;
+			height:45px;
+			line-height:45px;
+			border:1px solid #3E4B7D;
+			border-radius:4px;
+			padding-left:10px;
+		}
+       button{
+		width:100px;
+		height:40px;
+		border:none;
+		background:#3E4B7D;
+		border-radius:4px;
+		color:#fff;
+		margin-left:50px;
+		margin-bottom:20px;
+	}
+	 button:hover{
+		border:1px solid #3E4B7D;
+		background:#fff;
+		color:#3E4B7D;
+	}
+    </style>
 </head>
 <body>
-用户名：<input type="text" id="username">
-密码：<input type="password" id="password"><button id="login">登录</button>
-<a href="${pageContext.request.contextPath }/page/alloffice.do">
-                      <i class="fa fa-table"></i>
-                     <span class="nav-label">文档管理</span>
-                 </a>
+<div class="login-content">
+    <h1>用户登录</h1>
+	<div><label>用户名:</label> <input type="text" id="username"></div>
+	<div><label>密码：</label> <input type="password" id="password"></div>
+	
+	<button id="login">登录</button><br>
+	
+	
+	<a style="margin-left:35px;font-size:16px;" href="${pageContext.request.contextPath }/page/alloffice.do">
+	                      <i class="fa fa-table"></i>
+	                     <span class="nav-label">文档管理</span>
+	                 </a>
+                 
+ </div>
 <!-- 全局js -->
     <script src="${pageContext.request.contextPath }/static/jquery/jquery-1.9.1.min.js"></script>
     <script src="${pageContext.request.contextPath }/static/bootstrap/js/bootstrap.min.js"></script>

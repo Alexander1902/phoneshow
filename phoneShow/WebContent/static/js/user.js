@@ -36,7 +36,7 @@ function showAllUser(data){
 		html+="</td>";
 		html+="<td><span id=\""+data[i].id+"_span\">"+data[i].password;
 		html+="</span><div id=\""+data[i].id+"_div\"  style=\"display:none;\"><input id=\""+data[i].id+"_input\" value=\""+data[i].password+"\"><button onclick=\"update('"+data[i].id+"','"+data[i].username+"')\">保存</button></div</td>";
-		html+="<td><button onclick=\"deleteById('"+data[i].username+"','"+data[i].id+"')\">删除</button>" +
+		html+="<td><button onclick=\"deleteById('"+data[i].username+"','"+data[i].id+"')\">删除</button>&nbsp;&nbsp;" +
 				"<button onclick=\"modifyPass("+data[i].id+")\">修改密码</button>";
 		html+="</td>";
 		html+="</tr>";

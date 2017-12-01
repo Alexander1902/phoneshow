@@ -52,20 +52,16 @@
 }
 .show-table{
 	margin-top:10px;
-	height:390px;
 } 
-#officeTable tr{
-	height:35px!important;
-}
- .table > tbody > tr > td{
-    padding:0!important;
- }
 .table>thead{
 	background:#3E4B7D;
 	color:#fff;
 }
 .table tr td{
 	text-align:center;
+}
+.table>tbody>tr>td{
+    vertical-align: middle;
 }
 .table>tbody>tr:hover{
 	background:#ccc;
@@ -133,4 +129,8 @@
 .totalSize span {
 	color: #0073A9;
 	margin: 0 5px;
+}
+.add>button{
+	width:80px;
+	margin-bottom:15px;
 }
