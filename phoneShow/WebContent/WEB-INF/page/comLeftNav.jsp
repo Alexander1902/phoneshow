@@ -37,6 +37,7 @@
                      <span class="nav-label">信息发布</span>
                  </a>
              </li>
+             
              <li>
                  <a href="${pageContext.request.contextPath }/page/user.do">
                       <i class="fa fa-envelope"></i>

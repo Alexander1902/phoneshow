@@ -39,7 +39,7 @@ function showAllUser(data){
 		html+="<td><span id=\""+data[i].id+"_span\">"+data[i].password;
 		html+="</span><div id=\""+data[i].id+"_div\"  style=\"display:none;\"><input id=\""+data[i].id+"_input\" value=\""+data[i].password+"\"><button onclick=\"update('"+data[i].id+"','"+data[i].username+"')\">保存</button></div</td>";
 		html+="<td><button onclick=\"deleteById('"+data[i].username+"','"+data[i].id+"')\">删除</button>&nbsp;&nbsp;" +
-				"<button onclick=\"modifyPass("+data[i].id+")\">修改密码</button>";
+				"<button onclick=\"modifyPass('"+data[i].id+"')\">修改密码</button>";
 		html+="</td>";
 		html+="</tr>";
 		$("#userTable").append(html);
@@ -48,9 +48,9 @@ function showAllUser(data){
 function deleteById(name,id){//删除后调用getAllUser()
 	var cf=confirm("删除用户"+name+"吗？");
 	if(cf){
-		/*var json={"id":id};
+		var json={"id":id};
 		var _param={
-				url: "/phoneShow/page/*.do",
+				url: "/phoneShow/page/delUserInfo.do",
 				type: "GET",
 				datatype: 'json',
 				data:json,
@@ -59,6 +59,7 @@ function deleteById(name,id){//删除后调用getAllUser()
 					  layer.load(2);
 		        }, 
 				success: function(data){//返回stute 数字1成功，2失败
+					layer.closeAll('loading');
 					if(data.stute==1){
 						layer.msg("删除成功！");
 						getAllUser();
@@ -67,7 +68,7 @@ function deleteById(name,id){//删除后调用getAllUser()
 					}
 				}
 			};
-			$.ajax(_param);*/
+			$.ajax(_param);
 	}
 }
 function modifyPass(id){
@@ -94,16 +95,13 @@ function update(id,name){
 		if(cf){
 			alert("修改了密码");
 			$("#"+id+"_span").html(newpass);
-			/*var json={"id":id,"newpass":newpass};
+			var json={"id":id,"password":newpass};
 			var _param={
-					url: "/phoneShow/page/*.do",
+					url: "/phoneShow/page/updatePwd.do",
 					type: "GET",
 					datatype: 'json',
 					data:json,
-					scriptCharset:'UTF-8',
-					beforeSend:function(XMLHttpRequest){ 
-						  layer.load(2);
-			        }, 
+					scriptCharset:'UTF-8', 
 					success: function(data){//返回stute 数字1成功，2失败
 						if(data.stute==1){
 							layer.msg("修改成功！");
@@ -111,10 +109,10 @@ function update(id,name){
 							layer.msg("修改失败！");
 						}
 						$("#"+id+"_span").show();
-						$("#"+id+"_input").hide();
+						$("#"+id+"_div").hide();
 					}
 				};
-				$.ajax(_param);*/
+				$.ajax(_param);
 		}else{}
 	}
 	$("#"+id+"_span").show();
@@ -154,18 +152,18 @@ function adduser(){
 				datatype: 'json',
 				data:json,
 				scriptCharset:'UTF-8',
-				beforeSend:function(XMLHttpRequest){ 
+				/*beforeSend:function(XMLHttpRequest){ 
 					  layer.load(2);
-		        }, 
+		        }, */
 				success: function(data){
-					layer.closeAll('loading');
-					
+					//layer.closeAll('loading');
 						if(data.stute==1){
 							alert("添加成功！");
 						}else{
 							alert("添加失败！");
 						}
 						layer.close(layer.index);
+						getAllUser();
 				}
 			};
 			$.ajax(_param);

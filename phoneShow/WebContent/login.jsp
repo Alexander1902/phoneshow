@@ -74,9 +74,12 @@
 <script type="text/javascript">
 	$(function(){
 		$("#login").click(function(){
-			alert("测试");
+			var username=$("#username").val();
+			var password=$("#password").val();
+			var usernameencode=encodeURI(username);
+			var json={"username":usernameencode,"password":password};
 			var _param={
-					url: "/phoneShow/page/",
+					url: "/phoneShow/page/login.do",
 					type: "POST",
 					datatype: 'json',
 					data:json,
@@ -86,10 +89,11 @@
 						  layer.load(2);
 			        }, 
 					success: function(data){
+						layer.closeAll('loading');
 						if(data.stute==1){
 							location.href="${pageContext.request.contextPath }/page/alloffice.do";
 						}else{
-							layer.msg('用户名或密码错误，请重新输入');
+							alert('用户名或密码错误，请重新输入');
 						}
 					}
 				};
