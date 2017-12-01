@@ -1,5 +1,5 @@
 $(function(){//初始化页面应该调getAllUser()，测试调showAllUser(data)
-	var data=['{"id":12,"username":"张珊","password":"123456"}',
+	/*var data=['{"id":12,"username":"张珊","password":"123456"}',
 	          '{"id":13,"username":"张四","password":"123456"}',
 	          '{"id":13,"username":"张3","password":"123456"}',
 	          '{"id":13,"username":"张4","password":"123456"}',
@@ -9,18 +9,20 @@ $(function(){//初始化页面应该调getAllUser()，测试调showAllUser(data)
 		var obj=eval('(' + data[o] + ')');
 		json[o]=obj;
 	}
-	showAllUser(json);
+	showAllUser(json);*/
+	getAllUser();
 });
 function getAllUser(){
 	var _param={
-			url: "/phoneShow/page/*.do",
+			url: "/phoneShow/page/getUserInfo.do",
 			type: "GET",
 			datatype: 'json',
 			scriptCharset:'UTF-8',
 			beforeSend:function(XMLHttpRequest){ 
 				  layer.load(2);
-	        }, 
+	        },
 			success: function(data){//调用showAllUser(data)
+				layer.closeAll('loading');
 				showAllUser(data);
 			}
 		};
@@ -144,10 +146,10 @@ function adduser(){
 			return;
 		}
 		//username需要转字符集，防止乱码，后台解字符集 var titleencode=encodeURI(title);
-		/*var usernameencode=encodeURI(username);
-		var json={"username":usernameencode,"newpassword":newpassword};
+		var usernameencode=encodeURI(username);
+		var json={"username":usernameencode,"password":newpassword};
 		var _param={
-				url: "/phoneShow/page/*.do",
+				url: "/phoneShow/page/userInfo.do",
 				type: "POST",
 				datatype: 'json',
 				data:json,
@@ -156,15 +158,17 @@ function adduser(){
 					  layer.load(2);
 		        }, 
 				success: function(data){
+					layer.closeAll('loading');
+					
 						if(data.stute==1){
-							layer.msg("添加成功！");
+							alert("添加成功！");
 						}else{
-							layer.msg("添加失败！");
+							alert("添加失败！");
 						}
-					layer.close(layer.index);
+						layer.close(layer.index);
 				}
 			};
-			$.ajax(_param);*/
+			$.ajax(_param);
 	}
 	layer.close(layer.index);
 }
