@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/hadmin/js/layer/skin/layer.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/static/css/index.css" type="text/css">
     <style>
-    body{background:#f5f5f5}
+    body{background:#B4C7D4;}
        .login-content{
           text-align:center;
           margin-top:100px;
@@ -22,7 +22,7 @@
        h1{
           line-height:50px;
           color:#3E4B7D;
-           margin-bottom:20px;
+          margin-bottom:20px;
        }
        label{width:60px;text-align:right;font-size:18px;}
        input{

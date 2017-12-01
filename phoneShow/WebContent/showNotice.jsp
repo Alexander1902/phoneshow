@@ -6,20 +6,25 @@
  *{
      margin:0;
      padding:0;
+     font-family:"Microsoft YaHei,微软雅黑"
  }
   body{
      padding:20px;
      background:#B4C7D4;
-     font-size:14px;
+     font-size:20px;
+     line-height:35px;
   }
   #title{
-     font-size:18px;
+     font-size:24px;
      font-weight:bold;
      color:#256996;
      margin:20px 0;
   }
   #content{
     padding-left:30px;
+    font-size:18px;
+    padding-top:15px;
+    line-height:25px;
   }
 </style>
 <head>
