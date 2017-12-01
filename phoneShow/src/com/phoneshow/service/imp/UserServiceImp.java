@@ -70,6 +70,7 @@ public class UserServiceImp implements UserService {
 	@Override
 	public void updatePassword(String id,String password) {
 		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
 		map.put("password", password);
 		int updatePassword = userDao.updatePassword(map);
 		if(updatePassword>0){
@@ -79,10 +80,11 @@ public class UserServiceImp implements UserService {
 		}
 	}
 
+	
 	@Override
-	public User checkLogin(User user) {
+	public Map<String, Object> checkLogin(String username, String password) {
 		// TODO Auto-generated method stub
-		return userDao.checkLogin(user);
+		return userDao.checkLogin(username, password);
 	}
 	
 }

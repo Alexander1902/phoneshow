@@ -47,19 +47,30 @@ public class PageController {
 	
 	/**
 	 * 登录
-	 * produces:用于解决返回json中文乱码问题
+	 * @param
 	 */
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public String login(User user,HttpServletRequest request){
+	public Map<String, Object> login(HttpServletRequest request){
 		//从数据库中查询
-		User u = userService.checkLogin(user);
-		//查询到user对象
-		if(u!=null){
-			return "登陆成功";
-		}else{
-			return "用户名或者密码错误";
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
 		}
+		
+		String username = WebUtill.getParameter("username", request);
+		String password = WebUtill.getParameter("password", request);
+		try {
+			username=URLDecoder.decode(username, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		logger.info("username:" + username);
+		Map<String, Object> resultmap = userService.checkLogin(username, password);
+		
+		return resultmap;
+		
 	}
 	
 	/**

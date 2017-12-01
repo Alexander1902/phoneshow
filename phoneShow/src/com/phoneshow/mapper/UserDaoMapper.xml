@@ -8,7 +8,7 @@
 		 VALUE(#{id},#{username},#{password},#{flag})
 	</insert>
 	<!--删除用户  -->
-	<delete id="deleteById" parameterType="java.lang.String">
+	<delete id="deleteById" parameterType="java.util.Map">
 		DELETE FROM user WHERE id=#{id}
 	</delete>
 	<!--查询用户  -->

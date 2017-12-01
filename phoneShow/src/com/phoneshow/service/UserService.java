@@ -34,6 +34,6 @@ public interface UserService {
 	 * 用户登录验证
 	 * @param
 	 */
-	User checkLogin(User user);
+	public Map<String, Object> checkLogin(String username,String password);
 	
 }
