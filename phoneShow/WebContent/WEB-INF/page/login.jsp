@@ -24,7 +24,7 @@
           color:#3E4B7D;
           margin-bottom:20px;
        }
-       label{width:60px;text-align:right;font-size:18px;}
+       label{width:70px;text-align:right;font-size:18px;}
        input{
             width:250px;
 			height:45px;
@@ -59,10 +59,10 @@
 	<button id="login">登录</button><br>
 	
 	
-	<%-- <a style="margin-left:35px;font-size:16px;" href="${pageContext.request.contextPath }/page/alloffice.do">
+	 <a style="margin-left:35px;font-size:16px;" href="${pageContext.request.contextPath }/showAll.jsp">
 	                      <i class="fa fa-table"></i>
-	                     <span class="nav-label">文档管理</span>
-	                 </a> --%>
+	                     <span class="nav-label">进入首页</span>
+	                 </a> 
                  
  </div>
 <!-- 全局js -->
