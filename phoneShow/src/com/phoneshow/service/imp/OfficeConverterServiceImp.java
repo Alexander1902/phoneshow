@@ -41,7 +41,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("original_name", original_name);
 		map.put("server_path","office\\"+fileName);
-		System.out.println(fileName+"fileName????");
+		System.out.println(fileName+"fileName");
 		try {
 			map.put("id", id);
 			map.put("title", title);
@@ -59,7 +59,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 				String url = fileName.substring(0, fileName.indexOf('.')) + "excl.html";// 输出文件
 				map.put("url", url);
 				officeDao.insertOffice(map);
-				Map<String, Object> hMap = new HashMap<>();
+				Map<String, Object> hMap = new HashMap<String, Object>();
 				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
 				for (Map<String, String> map2 : selectOffice) {
 					System.out.println(map2.get("url") + "测试");
@@ -74,7 +74,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 					System.out.println("HTML的真实路径是："+hs.get("htmlURL"));
 				}
 				officeDao.insertOffice(map);
-				Map<String, Object> hMap = new HashMap<>();
+				Map<String, Object> hMap = new HashMap<String, Object>();
 
 				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
 				for (Map<String, String> map2 : selectOffice) {
@@ -99,7 +99,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		List<Map<String, String>> selectOffice = officeDao.selectOffice(map);
 		Integer selectCount = officeDao.selectCount(map);
 		// log.info("title"+map.get("title"));
-		Map<String, Object> pageMap = new HashMap<>();
+		Map<String, Object> pageMap = new HashMap<String, Object>();
 		pageMap.put("selectCount", selectCount);
 		pageMap.put("selectOffice", selectOffice);
 		return selectOffice;
@@ -158,7 +158,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		String date = MyDateUtil.TimeShow();
 		UUID randomUUID = UUID.randomUUID();
 		String id = randomUUID.toString();
-		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("title", title);
@@ -182,7 +182,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 	 */
 	@Override
 	public void updateOffice(String title, String id) {
-		Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("title", title);
 		map.put("id", id);
 		int updateOffice = officeDao.updateOffice(map);

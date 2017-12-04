@@ -56,7 +56,7 @@ public class PageController {
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.setAttribute("USER", "");
+		session.setAttribute("USER", null);
 			return "login";
 	}
 	/**
@@ -85,7 +85,7 @@ public class PageController {
 		map.put("password", password);
 		List<Map<String, Object>> userList = userService.checkLogin(map);
 		Map<String, Object> result = new HashMap<>();
-		if(userList.size()>=0){
+		if(userList.size()>0){
 			HttpSession session = request.getSession();
 			session.setAttribute("USER", userList.get(0));
 			result.put("stute", 1);
@@ -194,8 +194,8 @@ public class PageController {
 		logger.info("跳到" + page + ".jsp");
 		HttpSession session = request.getSession();
 		Object attribute = session.getAttribute("USER");
-		
 		if(attribute==null){
+			System.out.println("已经退出登录~");
 			return "login";
 		}
 		return page;

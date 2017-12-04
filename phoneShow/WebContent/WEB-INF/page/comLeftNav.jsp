@@ -41,14 +41,16 @@
              <c:if test="${USER.flag == 2 }">
              <li>
                  <a href="${pageContext.request.contextPath }/page/user.do">
-                      <i class="fa fa-envelope"></i>
+                      <!-- <i class="fa fa-envelope"></i> -->
+                      <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
                       <span class="nav-label">用户管理</span>
                  </a>
              </li>
              </c:if>
              <li>
                  <a href="${pageContext.request.contextPath }/page/logout.do">
-                      <i class="fa fa-envelope"></i>
+                     <!--  <i class="fa fa-envelope"></i> -->
+                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                       <span class="nav-label">退出</span>
                  </a>
              </li>

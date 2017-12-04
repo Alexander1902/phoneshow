@@ -60,8 +60,8 @@ import org.w3c.dom.Document;
 public class WordToHtml {
 
 	public static void main(String[] args) throws IOException, TransformerException, ParserConfigurationException {
-		//Word2003ToHtml("C:/test/","滕王阁序2003.doc");
-		Word2007ToHtml("C:/test/","tengwang.docx");
+		Word2003ToHtml("C:/test/","滕王阁序2003.doc");
+		//Word2007ToHtml("C:/test/","tengwang.docx");
 	}
 	 public static void Word2003ToHtml(String filepath,String fileName) throws IOException, TransformerException, ParserConfigurationException {
 		         final String imagepath = filepath+"image/";
@@ -74,7 +74,7 @@ public class WordToHtml {
 		        HWPFDocument wordDocument = new HWPFDocument(input);
 		         WordToHtmlConverter wordToHtmlConverter = new WordToHtmlConverter(DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument());
 		        //设置图片存放的位置
-		         wordToHtmlConverter.setPicturesManager(new PicturesManager() {
+		        /* wordToHtmlConverter.setPicturesManager(new PicturesManager() {
 		             public String savePicture(byte[] content, PictureType pictureType, String suggestedName, float widthInches, float heightInches) {
 		               File imgPath = new File(imagepath+date+File.separator);
 		               suggestedName=date+suggestedName;
@@ -94,8 +94,8 @@ public class WordToHtml {
 		               // return imagepath + suggestedName;
 		                return "image/"+date+"/"+suggestedName;
 		            }
-		        });
-		         
+		        });*/
+		         wordToHtmlConverter.setPicturesManager(new NewPictureManager(date, imagepath));
 		         //解析word文档
 		         wordToHtmlConverter.processDocument(wordDocument);
 		         Document htmlDocument = wordToHtmlConverter.getDocument();
@@ -125,7 +125,7 @@ public class WordToHtml {
 		         outStream.close();
 		    }
 
-	public static void Word2007ToHtml(String filepath,String fileName) throws IOException {
+	/*public static void Word2007ToHtml(String filepath,String fileName) throws IOException {
 		//String filepath = "C:/test/";
 		//String fileName = "tengwang.docx";
 		//String htmlName = "tengwang.html";
@@ -186,6 +186,6 @@ public class WordToHtml {
 			}
 		}
 	}
-	 
+*/	 
 
 }

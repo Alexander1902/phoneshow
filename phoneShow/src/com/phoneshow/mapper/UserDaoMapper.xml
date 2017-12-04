@@ -13,7 +13,7 @@
 	</delete>
 	<!--查询用户  -->
 	<select id="selectUser"  resultType="java.util.Map">
-		SELECT * FROM user
+		SELECT * FROM user where flag='3'
 	</select>
 	<!--根据id更改密码  -->
 	<update id="updatePassword" parameterType="java.util.Map">
