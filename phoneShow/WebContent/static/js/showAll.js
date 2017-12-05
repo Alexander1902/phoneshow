@@ -142,7 +142,8 @@ function showHtml(data){
 		html+="<td>"+data[o].date;
 		html+="</td>";
 		if(data[o].type !=3){
-			html+="<td><button onclick=\"window.open('/phoneShow/page/download.do?id="+data[o].id+"')\">下载</button>";
+			//html+="<td><button onclick=\"window.open('/phoneShow/page/download.do?id="+data[o].id+"')\">下载</button>";
+			html+="<td><a href=\"/phoneShow/page/download.do?id="+data[o].id+"\">下载</a>";
 			html+="</td>";
 		}else{
 			html+="<td></td>";
