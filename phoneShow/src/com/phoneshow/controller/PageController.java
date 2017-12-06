@@ -442,5 +442,11 @@ public class PageController {
 	            IOUtils.closeQuietly(inputStream);
 	        }
 	    }
+	 @RequestMapping("/allid.do")
+	 @ResponseBody
+	 public List<Map<String, Object>> getAllId(){
+		 List<Map<String, Object>> allId = officeConverterService.getAllId();
+		 return allId;
+	 }
 
 }

@@ -50,4 +50,7 @@
 	<update id="updateOffice" parameterType="java.util.Map">
 		UPDATE office o SET o.title=#{title} WHERE o.id=#{id}
 	</update>
+	<select id="getAllId" resultType="java.util.Map">
+		SELECT id FROM office
+	</select>
 </mapper>

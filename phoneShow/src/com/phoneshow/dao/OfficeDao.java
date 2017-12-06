@@ -10,4 +10,5 @@ public interface OfficeDao {
 	public void deleteById(String id);
 	public Map<String, Object> getOfficeById(String id);
 	public int updateOffice(Map<String, Object> map);
+	public List<Map<String, Object>> getAllId();
 }

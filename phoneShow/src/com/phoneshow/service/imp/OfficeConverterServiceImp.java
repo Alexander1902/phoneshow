@@ -193,4 +193,10 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		}
 	}
 
+	@Override
+	public List<Map<String, Object>> getAllId() {
+		List<Map<String, Object>> allId = officeDao.getAllId();
+		return allId;
+	}
+
 }
