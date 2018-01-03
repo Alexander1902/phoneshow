@@ -33,8 +33,8 @@ public class ExcelToHtml {
 	 Excel2003ToHtml(path, file);
  }
  public static void Excel2003ToHtml(String filepath,String filename) throws Exception{
-	 String outName=filename.substring(0,filename.indexOf("."))+"excl.html";
-	 String date=filename.substring(0,filename.indexOf("."));
+	 String outName=filename.substring(0,filename.lastIndexOf("."))+"excl.html";
+	 String date=filename.substring(0,filename.lastIndexOf("."));
 	 InputStream input=new FileInputStream(filepath+filename);
      HSSFWorkbook excelBook=new HSSFWorkbook(input);
      ExcelToHtmlConverter excelToHtmlConverter = new ExcelToHtmlConverter (DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument() );

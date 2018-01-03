@@ -14,6 +14,7 @@ import com.phoneshow.dao.OfficeDao;
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.util.ExcelToHtml;
 import com.phoneshow.util.MyDateUtil;
+import com.phoneshow.util.NameUtill;
 import com.phoneshow.util.PptToHtml;
 import com.phoneshow.util.WordToHtml;
 
@@ -33,7 +34,7 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		if (!filepath.endsWith(File.separator)) {
 			filepath = filepath + File.separator;
 		}
-		expandname = expandname.substring(1);// 扩展名
+		expandname = expandname.substring(1);// 扩展名,.doc,.xls,.ppt
 		String date = MyDateUtil.TimeShow();
 		UUID randomUUID = UUID.randomUUID();
 		String id = randomUUID.toString();
@@ -41,6 +42,16 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("original_name", original_name);
 		map.put("server_path","office\\"+fileName);
+		
+		//设置下载名字，保证下载名不重复
+		Integer nameCount = officeDao.getNameCount(original_name);
+		if(nameCount>0){
+			String newNameByCount = NameUtill.getNewNameByCount(nameCount, original_name);
+			map.put("download_name", newNameByCount);
+		}else {
+			map.put("download_name", original_name);
+		}
+		
 		System.out.println(fileName+"fileName");
 		try {
 			map.put("id", id);
@@ -49,21 +60,21 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 			map.put("date", date);
 			if (expandname.equals("doc") || expandname.equals("DOC")) {
 				map.put("type", "1");
-				String url = fileName.substring(0, fileName.indexOf('.')) + "word.html";// 输出文件
+				String url = fileName.substring(0, fileName.lastIndexOf('.')) + "word.html";// 输出文件
 				map.put("url", url);
 				WordToHtml.Word2003ToHtml(filepath, fileName);
 				officeDao.insertOffice(map);
 			} else if (expandname.equals("xls") || expandname.equals("XLS")) {
 				ExcelToHtml.Excel2003ToHtml(filepath, fileName);
 				map.put("type", "2");
-				String url = fileName.substring(0, fileName.indexOf('.')) + "excl.html";// 输出文件
+				String url = fileName.substring(0, fileName.lastIndexOf('.')) + "excl.html";// 输出文件
 				map.put("url", url);
 				officeDao.insertOffice(map);
-				Map<String, Object> hMap = new HashMap<String, Object>();
-				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
-				for (Map<String, String> map2 : selectOffice) {
+				//Map<String, Object> hMap = new HashMap<String, Object>();
+				//List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
+				/*for (Map<String, String> map2 : selectOffice) {
 					System.out.println(map2.get("url") + "测试");
-				}
+				}*/
 			}else if (expandname.equals("ppt") || expandname.equals("PPT")) {
 				log.info("filepath:"+filepath+"fileName:"+fileName);
 				HashMap<String, Object> hs = PptToHtml.doPPTtoHtml(filepath, fileName);
@@ -74,12 +85,17 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 					System.out.println("HTML的真实路径是："+hs.get("htmlURL"));
 				}
 				officeDao.insertOffice(map);
-				Map<String, Object> hMap = new HashMap<String, Object>();
+				//Map<String, Object> hMap = new HashMap<String, Object>();
 
-				List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
-				for (Map<String, String> map2 : selectOffice) {
+				//List<Map<String, String>> selectOffice = officeDao.selectOffice(hMap);
+				/*for (Map<String, String> map2 : selectOffice) {
 					System.out.println(map2.get("url") + "测试");
-				}
+				}*/
+			}else if ("pdf".equals(expandname)||"PDF".equals(expandname)) {
+				map.put("type", "5");
+				String url = fileName;// 输出文件
+				map.put("url", url);
+				officeDao.insertOffice(map);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -198,5 +214,5 @@ public class OfficeConverterServiceImp implements OfficeConverterService {
 		List<Map<String, Object>> allId = officeDao.getAllId();
 		return allId;
 	}
-
+	
 }

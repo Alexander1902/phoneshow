@@ -44,6 +44,7 @@
 								<option value="2">Excel</option>
 								<option value="3">公告</option>
 								<option value="4">PPT</option>
+								<option value="5">PDF</option>
 					        </select>
 			            </div>
 						<div class="col-sm-2">
@@ -72,6 +73,7 @@
 							<thead>
 								<td>编号</td>
 								<td>标题</td>
+								<td>文件名</td>
 								<td>类型</td>
 								<td>浏览</td>
 								<td>时间</td>

@@ -63,6 +63,10 @@
 	                      <i class="fa fa-table"></i>
 	                     <span class="nav-label">进入首页</span>
 	                 </a> 
+	    <a style="margin-left:35px;font-size:16px;" href="${pageContext.request.contextPath }/office/app/ceshi.apk">
+	                      <i class="fa fa-table"></i>
+	                     <span class="nav-label">下载app</span>
+	                 </a> 
                  
  </div>
 <!-- 全局js -->

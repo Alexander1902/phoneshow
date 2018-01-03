@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phoneshow.dao.ClassNameDao">
+	<select id="getAllClassName" resultType="java.util.Map">
+		SELECT c.class_Id as id,c.class_name as `name` FROM class c
+	</select>
+	<select id="getClassById" resultType="java.util.Map">
+		SELECT
+			c.class_Id AS id,
+			c.class_name AS `name`
+		FROM
+			class c
+		WHERE
+			c.class_Id = #{id}
+	</select>
+	<delete id="deleteById">
+		DELETE FROM class  WHERE class_Id=#{id}
+	</delete>
+	<insert id="addClass">
+		INSERT INTO class (class_Id, class_name)
+			VALUE
+	(
+		(SELECT CAST((SELECT MAX(o.class_Id)+1 FROM class o) AS char) FROM DUAL),
+		#{name}
+	)
+	</insert>
+	<update id="updateClass">
+		UPDATE class c SET c.class_name=#{name} WHERE c.class_Id=#{id}
+	</update>
+	
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT count(1) FROM class c WHERE c.class_name=#{name}
+	</select>
+</mapper>

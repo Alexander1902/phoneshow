@@ -12,7 +12,7 @@
 
 	<context:component-scan base-package="com.phoneshow.controller" />
 	<mvc:annotation-driven />
-	
+	<bean id="init" class="com.phoneshow.init.InitClassData" init-method="init"></bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/page/" />

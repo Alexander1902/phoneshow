@@ -68,7 +68,7 @@ public class WordToHtml {
 		 		//final String imagepath = savepath+"image/";
 		       // String htmlName = "Î¯Õı∏Û–Ú2003.html";
 		         String htmlName =fileName.substring(0, fileName.indexOf('.'))+"word.html";
-		         String date=fileName.substring(0, fileName.indexOf('.'));
+		         String date=fileName.substring(0, fileName.lastIndexOf('.'));
 		        final String file = filepath + fileName;
 		         InputStream input = new FileInputStream(new File(file));
 		        HWPFDocument wordDocument = new HWPFDocument(input);

@@ -57,6 +57,7 @@
 						   <span class="circle1">Word</span>
 						   <span class="circle2">Excel</span>
 						   <span class="circle3">ppt</span>
+						    <span class="circle4">pdf</span>
 						</div>
 					</div>
 			</body>

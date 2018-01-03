@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.util.MyDateUtil;
+import com.phoneshow.util.NameUtill;
 import com.phoneshow.util.WebUtill;
 @Controller
 @RequestMapping("/upload")
@@ -47,9 +48,12 @@ public class UploadController {
 			officefile.mkdirs();
 		}
 		String original_name = upload.getOriginalFilename();
+		/*if(officeConverterService.getName(original_name)>0){
+			original_name=NameUtill.getNewName(original_name);
+		}*/
 		logger.info("original_name:"+original_name);
-		String expandname = upload.getOriginalFilename().substring(upload.getOriginalFilename().indexOf('.'));
-		logger.info(expandname+"扩展名");
+		String expandname = upload.getOriginalFilename().substring(upload.getOriginalFilename().lastIndexOf('.'));
+		logger.info(expandname+"扩展名");//.pdf
 		String fileName = MyDateUtil.DateAndTime()+expandname;
 		File save = new File(officefile, fileName);
 		InputStream input = null;

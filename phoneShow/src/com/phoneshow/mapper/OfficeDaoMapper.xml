@@ -3,8 +3,8 @@
 <mapper namespace="com.phoneshow.dao.OfficeDao">
 	<insert id="insertOffice" parameterType="java.util.Map">
 		INSERT INTO office
-		(`id`,`title`,`type`,`url`,`content`,`date`,`server_path`,`original_name`)
-		 VALUE(#{id},#{title},#{type},#{url},#{content},#{date},#{server_path},#{original_name})
+		(`id`,`title`,`type`,`url`,`content`,`date`,`server_path`,`original_name`,`download_name`)
+		 VALUE(#{id},#{title},#{type},#{url},#{content},#{date},#{server_path},#{original_name},#{download_name})
 	</insert>
 	
 	<sql id="queryOfficeWhere">
@@ -51,6 +51,25 @@
 		UPDATE office o SET o.title=#{title} WHERE o.id=#{id}
 	</update>
 	<select id="getAllId" resultType="java.util.Map">
-		SELECT id FROM office
+		<!-- SELECT id as id,download_name as fileName FROM office o WHERE o.type &lt;&gt; '3' -->
+		SELECT
+			id AS id,
+			download_name AS fileName,
+			case WHEN c.class_name is null THEN ''
+			else c.class_name END as type
+		FROM
+			office o
+		LEFT JOIN 
+			class c ON o.class_Id = c.class_Id
+		WHERE
+			o.type &lt;&gt;'3'
+	</select>
+	<select id="getNameLike" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT REVERSE(SUBSTR(REVERSE(o.original_name),LOCATE('.',REVERSE(o.original_name))+1)) 
+		from office o
+		WHERE o.original_name LIKE CONCAT(#{name},'%')
+	</select>
+	<select id="getNameCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM office o WHERE o.original_name=#{name}
 	</select>
 </mapper>

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.phoneshow.entity.User;
+import com.phoneshow.service.ClassService;
 import com.phoneshow.service.OfficeConverterService;
 import com.phoneshow.service.UserService;
 import com.phoneshow.util.MyDateUtil;
@@ -46,7 +47,38 @@ public class PageController {
 	private OfficeConverterService officeConverterService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ClassService classService;
 	
+	/**
+	 * 得到所有分类
+	 * zsc
+	 * TODO
+	 */
+	@RequestMapping(value="/getclass.do")
+	@ResponseBody
+	public List<Map<String, Object>> getAllClassName(HttpServletRequest request){
+		List<Map<String, Object>> allClass = classService.getAllClass();
+		return allClass;
+	}
+	
+	/**
+	 * 根据id得到分类名字
+	 * zsc
+	 * TODO
+	 */
+	@RequestMapping(value="/getclassbyid.do")
+	@ResponseBody
+	public Map<String, Object> getClassById(HttpServletRequest request){
+		String id = WebUtill.getParameter("id", request);
+		logger.info("id:"+id);
+		Map<String, Object> classById = classService.getClassById(id);
+		if(classById!=null){
+			 return classById;
+		}else {
+ 			return null;
+		}
+	}
 	/**
 	 * 退出
 	 * 
